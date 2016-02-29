@@ -1,2 +1,2 @@
-# syn-login
-Login module
+# syn-auth
+Auth module
