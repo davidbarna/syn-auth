@@ -1,0 +1,23 @@
+{
+  "name": "syn-login",
+  "version": "0.0.0",
+  "description": "Login module",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soyundev/syn-login.git"
+  },
+  "author": "David Almeida <davidbarna@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/soyundev/syn-login/issues"
+  },
+  "homepage": "https://github.com/soyundev/syn-login",
+  "devDependencies": {
+    "dev-tools": "git://github.com/soyundev/dev-tools.git",
+    "gulp": "3.9.1"
+  }
+}
