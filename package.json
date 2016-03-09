@@ -2,7 +2,12 @@
   "name": "syn-auth",
   "version": "0.0.0",
   "description": "Login module",
-  "main": "index.js",
+  "main": "dest/index.js",
+  "browserify": {
+    "transform": [
+      "stringify"
+    ]
+  },
   "scripts": {
     "test": "test"
   },
@@ -19,5 +24,10 @@
   "devDependencies": {
     "dev-tools": "git://github.com/soyundev/dev-tools.git",
     "gulp": "3.9.1"
+  },
+  "dependencies": {
+    "angular-bsfy": "1.4.8",
+    "bluebird": "3.3.3",
+    "pubsub": "1.0.2"
   }
 }
