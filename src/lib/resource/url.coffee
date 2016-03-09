@@ -1,4 +1,23 @@
 ###
+ * Regular expressions to validate any path of the url
+ * @type {[type]}
+###
+REGEXP =
+  PROTO: '(http[s]?)'
+  DOMAIN: '([A-Za-z0-9-.]{1,63})'
+  PORT: '([0-9]{0,4})'
+  PATH: '(\/[\/A-Za-z0-9-.]+)'
+
+###
+ * Test a test with provided regexp
+ * @param  {string} regex
+ * @param  {string} str
+ * @return {Boolean}
+###
+test = ( regex, str ) ->
+  new RegExp( '^' + regex + '$' ).test( str )
+
+###
  * ResourceUrl
  * Setter/getter of valid urls
  *
@@ -15,25 +34,6 @@
  * ```
 ###
 class ResourceUrl
-
-  ###
-   * Regular expressions to validate any path of the url
-   * @type {[type]}
-  ###
-  REGEXP =
-    PROTO: '(http[s]?)'
-    DOMAIN: '([A-Za-z0-9-.]{1,63})'
-    PORT: '([0-9]{0,4})'
-    PATH: '(\/[\/A-Za-z0-9-.]+)'
-
-  ###
-   * Test a test with provided regexp
-   * @param  {string} regex
-   * @param  {string} str
-   * @return {Boolean}
-  ###
-  test = ( regex, str ) ->
-    new RegExp( '^' + regex + '$' ).test( str )
 
   ###
    * @constructor

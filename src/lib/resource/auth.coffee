@@ -33,7 +33,7 @@ class AuthResource
    * @param {string} url Must be absolute url
    * @return {this}
   ###
-  setUrl: ResourceClient::setUrl
+  setUrl: ( url ) -> @_resource.setUrl( url )
 
   ###
    * Posts basic auth to server and returns parsed session object

@@ -1,4 +1,4 @@
-fdescribe 'syn-auth.session.factory', ->
+describe 'syn-auth.session.factory', ->
 
   auth = require( 'src/' )
   data =

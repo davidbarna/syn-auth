@@ -66,6 +66,8 @@ class ResourceClient
   post: ( opts ) ->
     @request( 'POST', opts )
 
+
+
 ###
  * Sets timeout for all resquests
  * @param {number} ms Time in milliseconds
