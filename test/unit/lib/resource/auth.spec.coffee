@@ -1,4 +1,4 @@
-fdescribe 'syn-auth.resource.Auth', ->
+describe 'syn-auth.resource.Auth', ->
 
   USERNAME = 'fake-username'
   PASSWORD = 'fake-pass'
@@ -49,8 +49,9 @@ fdescribe 'syn-auth.resource.Auth', ->
         done()
         return session
 
-    it 'should set password of session', ( done ) ->
+    it 'should set username and password of session', ( done ) ->
       @result.then ( session ) ->
         auth.User::password.should.have.been.calledWith PASSWORD
+        auth.User::username.should.have.been.calledWith USERNAME
         done()
         return session

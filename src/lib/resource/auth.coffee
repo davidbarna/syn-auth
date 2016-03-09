@@ -50,8 +50,10 @@ class AuthResource
         @_resource.post( opts )
           .then ( response ) ->
             factory = require( '../../lib/session/factory' )
-            session = factory.createFromAuthResponse( username, response )
-            session.user().password( password )
+            session = factory.createFromAuthResponse( response )
+            session.user()
+              .username( username )
+              .password( password )
             return session
       )
 
