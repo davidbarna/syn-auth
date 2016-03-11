@@ -13,7 +13,6 @@ describe 'syn-auth.resource.Auth', ->
       refresh_token: null
       expires_in: 0
 
-
   Promise = require( 'bluebird' )
   auth = require( 'src/' )
   Client = auth.resource.Client.prototype
@@ -30,7 +29,8 @@ describe 'syn-auth.resource.Auth', ->
 
     beforeEach ->
       @sinon.stub( Client, 'post' ).returns Promise.resolve( FAKE_RESPONSE )
-      @sinon.stub( auth.User.prototype, 'password' )
+      @sinon.spy( auth.User.prototype, 'password' )
+      @sinon.spy( auth.User.prototype, 'username' )
       @result = @instance.login( USERNAME, PASSWORD )
       @sinon.server.respond()
 
