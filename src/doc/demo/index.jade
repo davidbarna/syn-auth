@@ -28,7 +28,7 @@ html
         input( type="test" ng-model="loginUrl" placeholder="Copy a webservice url to test the component")
       div @channel:
       pre(style="display: block;") 
-        div {{ loginUrl = "http://dev-api.grupoareas.com/stocks/v1/login" }}
+        div {{ loginUrl = "http://api.fake.com/login" }}
     .demo-login-screen
       syn-auth-login-form( url="loginUrl", channel="login-demo-channel" )
     script(type='text/javascript', src='../../index.bundle.js')
