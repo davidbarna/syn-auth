@@ -1,0 +1,19 @@
+// Default border radius
+$border-radius: 4px !default;
+
+// Default spacing
+$spacing: 20px !default;
+
+// Brand color
+$c-brand: #ffbd13 !default;
+
+// Danger color for errors, alerts, etc
+$c-danger: #f34a65 !default;
+
+// Colors for brand when placed as background color
+$bgc-brand: $c-brand !default;
+$bgc-brand-fg: #14344f !default;
+
+// Colors for danger when placed as background color
+$bgc-danger: $c-danger !default;
+$bgc-danger-fg: #fff !default;

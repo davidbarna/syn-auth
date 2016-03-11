@@ -1,0 +1,16 @@
+form.syn-form
+  .syn-form_errors {{ errors }}
+    close.syn-form_errors_close 
+      include ../imgs/icons/close.svg
+  .syn-form_body
+    .syn-form_row
+      input.syn-form_input( type="text" name="username" required placeholder="User")
+    .syn-form_row
+      input.syn-form_input( type="password" name="password" required placeholder="Password")
+    button(type='submit').syn-form_submit Access
+.syn-user-card
+  .syn-user-card_picture
+    ._placeholder
+  .syn-user-card_titles 
+    .syn-user-card_title {{ user.name() }}
+    .syn-user-card_subtitle {{ user.username() }}
