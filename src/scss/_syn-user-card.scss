@@ -1,0 +1,37 @@
+.syn-user-card {
+  $_pic-size : 125px;
+
+  height: $_pic-size;
+
+  .syn-user-card_picture {
+    box-sizing: border-box;
+    position: absolute;
+    float: left;
+    top: -$spacing;
+    left: $spacing;
+    padding: 3px;
+    background: #fff;
+    border: #c8c8c8 1px solid;
+
+    ._placeholder {
+      width: $_pic-size;
+      height: $_pic-size;
+      background: #efefef;
+    }
+  }
+
+  .syn-user-card_titles {
+    margin-top: $spacing;
+    margin-left: $_pic-size + $spacing + $spacing;
+  }
+
+  .syn-user-card_title {
+    font-size: 24px;
+    color: #14344f;
+  }
+
+  .syn-user-card_subtitle {
+    font-size: 14px;
+    color: #949494;
+  }
+}

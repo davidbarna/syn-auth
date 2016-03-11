@@ -1,0 +1,40 @@
+{
+  "name": "syn-auth",
+  "version": "0.0.0",
+  "description": "Login module",
+  "main": "dest/index.js",
+  "scripts": {
+    "test": "gulp test",
+    "install": "node_modules/.bin/gulp"
+  },
+  "browserify": {
+    "transform": [
+      "stringify"
+    ]
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soyundev/syn-auth.git"
+  },
+  "author": "David Almeida <davidbarna@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/soyundev/syn-auth/issues"
+  },
+  "homepage": "https://github.com/soyundev/syn-auth",
+  "devDependencies": {
+    "dev-tools": "git://github.com/soyundev/dev-tools.git",
+    "gulp": "3.9.1"
+  },
+  "dependencies": {
+    "angular-bsfy": "1.4.8",
+    "bluebird": "3.3.3",
+    "pubsub": "1.0.2"
+  },
+  "devDependencies": {
+    "jqlite": "0.2.34"
+  }
+}

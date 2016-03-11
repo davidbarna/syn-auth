@@ -1,0 +1,37 @@
+@import "_loading.scss";
+@import "_variables.scss";
+@import "_centered-box.scss";
+@import "_syn-form.scss";
+@import "_syn-user-card.scss";
+
+syn-auth-login-form {
+
+  .syn-user-card {
+    display: none;
+    @include syn-box-centered;
+  }
+
+  &.syn-auth-login-form--loading {
+    .syn-form { @extend .syn-loading-inner; }
+  }
+
+  &.syn-auth-login-form--error {
+    .syn-form_errors { display: block; }
+  }
+
+  &.syn-auth-login-form--success {
+    .syn-form { display: none; }
+    .syn-user-card { display: block; }
+  }
+}
+
+@media ( min-width: 600px ) {
+  .syn-form, .syn-user-card {
+    @include syn-box;
+    max-width: 650px;
+  }
+
+  .syn-form {
+    @include syn-box-centered;
+  }
+}
