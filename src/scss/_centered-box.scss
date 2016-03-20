@@ -1,0 +1,14 @@
+@mixin syn-box( $border: $border-radius ) {
+  border-radius: $border;
+  background: #fff;
+}
+
+@mixin syn-box-centered {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  right: 0;
+  left: 0;
+  margin: auto;
+  transform: translateY( -50% );
+}
