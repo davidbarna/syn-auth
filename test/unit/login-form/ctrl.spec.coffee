@@ -69,11 +69,12 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
       beforeEach ->
         @sinon.stub @instance, 'showUserCard'
         @sinon.stub @instance._pubsub.success, 'publish'
-        @resolve( user: -> 'my-user' )
+        @session = user: -> 'my-user'
+        @resolve( @session )
 
       it 'should publish success event and show user card', ( done ) ->
         @result.then ( user ) =>
-          @instance._pubsub.success.publish.should.have.been.calledWith 'my-user'
+          @instance._pubsub.success.publish.should.have.been.calledWith @session
           @instance.showUserCard.should.have.been.calledWith 'my-user'
           done()
           return null
