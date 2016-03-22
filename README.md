@@ -34,6 +34,23 @@ auth.login( 'my-user', 'my-password' )
     console.log error
 ```
 
+### SessionGlobal
+A service set and retrieve a unique session object.
+
+**Example of use:**
+
+```coffee-script
+gSession = syn.auth.session.global
+
+if !gSession.get()
+  document.href.location = '/login-page'
+  
+gSession.on session.CHANGE, ( session ) ->
+  # Stuff to do whenever session changes
+
+```
+
+
 
 ## Components
 

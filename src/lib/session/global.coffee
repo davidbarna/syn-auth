@@ -1,3 +1,22 @@
+###
+ * ### SessionGlobal
+ * A service set and retrieve a unique session object.
+ * It contains set/get functions and clear to delete the session
+ * It extends EventEmitter so it can be used to listen to Session.CHANGE
+ * event and behaviour according to session data.
+ *
+ * **Example of use:**
+ *
+ * ```coffee-script
+ * gSession = syn.auth.session.global
+ *
+ * if !gSession.get()
+ *   document.href.location = '/login-page'
+ * gSession.on session.CHANGE, ( session ) ->
+ *   # Stuff to do whenever session changes
+ *
+ * ```
+###
 storage = window.localStorage
 EventEmitter = require( 'events' ).EventEmitter
 
