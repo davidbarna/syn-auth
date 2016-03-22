@@ -2,7 +2,9 @@ describe 'syn-auth.session.global', ->
 
   storage = window.localStorage
   auth = require( 'src/' )
-  NAMESPACE = auth.session.global.NAMESPACE
+  instance = auth.session.global
+
+  NAMESPACE = instance.NAMESPACE
   session = auth.session.factory.createFromAuthResponse(
     settings:
       country: 'mx'
@@ -16,15 +18,16 @@ describe 'syn-auth.session.global', ->
 
   beforeEach ->
     @sinon = sinon.sandbox.create()
+    @sinon.stub( instance, 'emit' )
 
   afterEach ->
     @sinon.restore()
-    auth.session.global.clear()
+    instance.clear()
 
   describe '#set', ->
 
     beforeEach ->
-      auth.session.global.set( session )
+      instance.set( session )
 
     it 'should persist session on localStorage', ->
 
@@ -32,15 +35,19 @@ describe 'syn-auth.session.global', ->
       storage.getItem( NAMESPACE ).should.contain '"_name":"Fake User"'
 
     it 'should cache session', ->
-      auth.session.global._session.should.deep.equal session
+      instance._session.should.deep.equal session
+
+    it 'should launch an event with new session value', ->
+      instance.emit.should.have.been.calledOnce
+      instance.emit.should.have.been.calledWith( instance.CHANGE, session )
 
   describe '#get', ->
 
     beforeEach ->
-      auth.session.global.set( session )
+      instance.set( session )
 
     it 'should return expected session object', ->
-      auth.session.global.get().should.deep.equal session
+      instance.get().should.deep.equal session
 
     describe 'when session was cached', ->
 
@@ -48,13 +55,17 @@ describe 'syn-auth.session.global', ->
         storage.removeItem( NAMESPACE )
 
       it 'should not try to get session from storage', ->
-        auth.session.global.get().should.deep.equal session
+        instance.get().should.deep.equal session
 
   describe '#clear', ->
 
     beforeEach ->
-      auth.session.global.set( session )
-      auth.session.global.clear()
+      instance.set( session )
+      instance.clear()
 
     it 'should clear storage and session', ->
       storage.length.should.equal 0
+
+    it 'should launch an event with new session value', ->
+      instance.emit.should.have.been.calledTwice
+      instance.emit.should.have.been.calledWith( instance.CHANGE, null )

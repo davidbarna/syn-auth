@@ -36,12 +36,14 @@ sessionFactory =
   ###
   createFromSerializedData: ( data ) ->
     { _user, _locale } = data
+    
+    session = new Session()
+    session.user new User( _user._username, _user._name ) if !!_user
+    session.locale new Locale( _locale._language, _locale._country ) if !!_locale
+    session.token data._token if !!data._token
+    session.refreshToken data._refreshToken if !!data._refreshToken
+    session.expiration new Date( data._expiration ) if !!data._expiration
 
-    return new Session()
-      .user new User( _user._username, _user._name )
-      .locale new Locale( _locale._language, _locale._country )
-      .token data._token
-      .refreshToken data._refreshToken
-      .expiration new Date( data._expiration )
+    return session
 
 module.exports = sessionFactory

@@ -1,4 +1,5 @@
 storage = window.localStorage
+EventEmitter = require( 'events' ).EventEmitter
 
 ###
  * Serializes session to a storable string
@@ -15,18 +16,21 @@ serializeSession = ( session ) ->
  * @return {Session}
 ###
 unserializeSession = ( data ) ->
+  return data unless !!data
   factory = require( './factory' )
   data = JSON.parse( data )
   return factory.createFromSerializedData( data )
 
 
-sessionGlobal =
+class PersistentSession extends EventEmitter
 
   ###
    * Session namespace in storage
    * @type {String}
   ###
   NAMESPACE: 'auth.session.global'
+
+  CHANGE: 'auth.session.global.change'
 
   ###
    * Cached session to avoid parse from storage everytime
@@ -53,6 +57,7 @@ sessionGlobal =
     serializedSession = serializeSession( session )
     storage.setItem( @NAMESPACE , serializedSession )
     @_session = session
+    @emit( @CHANGE, @_session )
     return this
 
   ###
@@ -61,7 +66,9 @@ sessionGlobal =
   clear: ->
     storage.removeItem( @NAMESPACE )
     @_session = null
+    @emit( @CHANGE, @_session )
     return this
 
 
-module.exports = sessionGlobal
+
+module.exports = new PersistentSession()
