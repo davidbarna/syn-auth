@@ -101,7 +101,7 @@ class LoginFormCtrl
 
     @_auth.login( username, password )
       .then ( session ) =>
-        @_pubsub?.success.publish( session.user() )
+        @_pubsub?.success.publish( session )
         @showUserCard( session.user() )
       .catch ( e ) =>
         @handleErrors( e )

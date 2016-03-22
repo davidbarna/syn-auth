@@ -11,7 +11,6 @@ describe 'syn-auth.session.factory', ->
       refresh_token: 'fake-refresh-token'
       access_token: 'fake-access-token'
 
-
   describe '#createFromAuthResponse', ->
 
     beforeEach ->
@@ -25,3 +24,13 @@ describe 'syn-auth.session.factory', ->
       @result.token().should.equal 'fake-access-token'
       @result.refreshToken().should.equal 'fake-refresh-token'
       @result.expiration().toString().should.equal new Date( @expiration ).toString()
+
+  describe '#createFromSerializedData', ->
+
+    beforeEach ->
+      @session = auth.session.factory.createFromAuthResponse( data )
+      session = JSON.parse( JSON.stringify( @session ) )
+      @result = auth.session.factory.createFromSerializedData( session )
+
+    it 'should return expected session object', ->
+      @result.should.deep.equal @session

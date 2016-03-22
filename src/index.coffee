@@ -18,6 +18,7 @@ synAuth =
     Url: require( './lib/resource/url' )
   session:
     factory: require( './lib/session/factory' )
+    global: require( './lib/session/global' )
   Session: require( './lib/session' )
   User: require( './lib/user' )
   Locale: require( './lib/locale' )
