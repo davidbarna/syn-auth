@@ -19,6 +19,7 @@ describe 'syn-auth.session.global', ->
   beforeEach ->
     @sinon = sinon.sandbox.create()
     @sinon.stub( instance, 'emit' )
+    @sinon.spy( window, 'btoa' )
 
   afterEach ->
     @sinon.restore()
@@ -30,9 +31,11 @@ describe 'syn-auth.session.global', ->
       instance.set( session )
 
     it 'should persist session on localStorage', ->
-
+      window.btoa.should.have.been.calledOnce
+      window.btoa.args[0][0].should.contain '"_name":"Fake User"'
       storage.getItem( NAMESPACE ).should.be.defined
-      storage.getItem( NAMESPACE ).should.contain '"_name":"Fake User"'
+      storage.getItem( NAMESPACE ).should.be.a 'string'
+      storage.getItem( NAMESPACE ).length.should.be.at.least 100
 
     it 'should cache session', ->
       instance._session.should.deep.equal session
