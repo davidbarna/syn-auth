@@ -8,12 +8,16 @@ class User
   Locale = require( './locale' )
   getOrSet = require( './get-or-set' )
 
+  # Image to return in cae no avatar is defined
+  AVATAR = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
+
   ###*
    * @constructor
    * @param {string} username
    * @param {string} name
   ###
   constructor: ( username, name ) ->
+    @avatar( AVATAR )
     @username( username )
     @name( name )
 
@@ -39,6 +43,13 @@ class User
   ###
   name: ( name ) ->
     return getOrSet( this, '_name', name )
+
+  ###
+   * Avatar getter/setter
+   * @param {string} avatar Image url of base64 encode data
+  ###
+  avatar: ( avatar ) ->
+    return getOrSet( this, '_avatar', avatar )
 
   ###
    * Locale getter/setter based on country and lang
