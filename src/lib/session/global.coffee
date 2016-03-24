@@ -1,5 +1,5 @@
 ###
- * ### SessionGlobal
+ * # SessionGlobal
  * A service set and retrieve a unique session object.
  * It contains set/get functions and clear to delete the session
  * It extends EventEmitter so it can be used to listen to Session.CHANGE
@@ -26,7 +26,7 @@ EventEmitter = require( 'events' ).EventEmitter
  * @return {string} Stringified session
 ###
 serializeSession = ( session ) ->
-  JSON.stringify( session )
+  window.btoa( JSON.stringify( session ) )
 
 ###
  * Converts stringified session string to
@@ -37,7 +37,7 @@ serializeSession = ( session ) ->
 unserializeSession = ( data ) ->
   return data unless !!data
   factory = require( './factory' )
-  data = JSON.parse( data )
+  data = JSON.parse( window.atob( data ) )
   return factory.createFromSerializedData( data )
 
 
@@ -47,9 +47,9 @@ class PersistentSession extends EventEmitter
    * Session namespace in storage
    * @type {String}
   ###
-  NAMESPACE: 'auth.session.global'
+  NAMESPACE: 'syn.auth.session.global'
 
-  CHANGE: 'auth.session.global.change'
+  CHANGE: 'syn.auth.session.global.change'
 
   ###
    * Cached session to avoid parse from storage everytime
