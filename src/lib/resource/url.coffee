@@ -94,7 +94,11 @@ class ResourceUrl
   ###
   url: ( value ) ->
     if typeof value is 'undefined'
-      return @protocol() + '://' + @domain() + ':' + @port() + @path()
+      url = @protocol() + '://' + @domain()
+      url += ':' + @port() if @port() isnt 80
+      url += @path()
+
+      return url
 
     regexp = "#{REGEXP.PROTO}://#{REGEXP.DOMAIN}(:#{REGEXP.PORT})?#{REGEXP.PATH}"
 

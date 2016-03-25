@@ -81,10 +81,15 @@ describe 'syn-auth.resource.Url', ->
 
     describe 'when port is not in url', ->
 
-      it 'should set default port to 80', ->
+      beforeEach ->
         @instance.url( 'http://video.test.co.uk/videoplay' )
+
+      it 'should set default port to 80', ->
+        @instance.port().should.equal 80
+
+      it 'should return url without default port', ->
         @instance.url()
-          .should.equal 'http://video.test.co.uk:80/videoplay'
+          .should.equal 'http://video.test.co.uk/videoplay'
 
     describe 'when url is invalid', ->
 
