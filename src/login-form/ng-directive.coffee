@@ -2,7 +2,7 @@
  * Directive config for angular implementation
  * @type {Object}
 ###
-DashboardDirective =
+LoginFormDirective =
   scope:
     url: '='
     channel: '@'
@@ -21,4 +21,4 @@ DashboardDirective =
       .setChannel( scope.channel )
   ]
 
-module.exports = -> DashboardDirective
+module.exports = -> LoginFormDirective
