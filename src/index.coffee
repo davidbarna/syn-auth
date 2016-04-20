@@ -21,6 +21,6 @@ synAuth =
 
 window.syn ?= {}
 window.syn.auth ?= synAuth
-window.syn.core ?=require( 'syn-core' )
+window.syn.core ?= require( 'syn-core' )
 
 module.exports = synAuth

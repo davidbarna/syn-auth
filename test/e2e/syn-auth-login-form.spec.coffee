@@ -12,7 +12,7 @@ describe '<syn-auth-login-form />', ->
     submit: element.all( By.tagName('button') ).get(0)
 
   beforeAll ->
-    browser.get( 'http://localhost:3000/doc/demo/' )
+    browser.get( '/docs/' )
 
 
   describe 'when users submits the form', ->
@@ -21,8 +21,9 @@ describe '<syn-auth-login-form />', ->
       elements.username.sendKeys( 'fake-user' )
       elements.password.sendKeys( 'fake-password' )
       elements.submit.click()
-      browser.wait(
-        protractor.until.elementLocated( By.className( ERRORS_CLASS ) )
+      browser.wait( ->
+        elements.errors.getText().then (text) ->
+          return text isnt ''
       , 3000)
 
     it 'should display error message in the UI', ->

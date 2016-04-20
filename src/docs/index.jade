@@ -30,13 +30,18 @@ html
       h1 Syn auth
       h2 #{"<syn-auth-login-form @url @channel />"}
       div @url:
-        input( ng-model="loginUrl" placeholder="Copy a webservice url to test the component")
+        input( ng-model="loginUrl")
       div @channel:
+        span "login-demo-channel"
     .demo-login-screen
       syn-auth-login-form( url="loginUrl", channel="login-demo-channel" )
     script(type='text/javascript', src='/index.bundle.js')
     script(type='text/javascript').
-      angular.bootstrap( document.body, [ syn.auth.angular.getModule().name ] )
-      sub = syn.auth.pubsub.channel.factory.create( 'login-demo-channel', [ 'success', 'error' ] );
+      module = syn.auth.angular.getModule()
+        .run( function( $rootScope ) {
+          $rootScope.loginUrl = 'http://api.my-domain.com/login'
+        } )
+      angular.bootstrap( document.body, [ module.name ] )
+      sub = syn.core.pubsub.channel.factory.create( 'login-demo-channel', [ 'success', 'error' ] );
       sub.success.subscribe( function( user ){ console.log( user ); } )
       sub.error.subscribe( function( msg ){ console.warn( 'Error: ' + msg ); } )
