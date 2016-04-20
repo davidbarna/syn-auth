@@ -1,7 +1,7 @@
 describe 'syn-auth.session.global', ->
 
   storage = window.localStorage
-  auth = require( 'src/' )
+  auth = require( 'src/index.bundle' )
   instance = auth.session.global
 
   NAMESPACE = instance.NAMESPACE

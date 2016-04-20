@@ -1,6 +1,6 @@
 describe 'syn-auth.session.factory', ->
 
-  auth = require( 'src/' )
+  auth = require( 'src/index.bundle' )
   data =
     settings:
       country: 'mx'

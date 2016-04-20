@@ -9,7 +9,7 @@ DashboardDirective =
   template: require( './tpl' )
   controller: [ '$scope', '$element', '$attrs', ( scope, element, attrs ) ->
 
-    angularify = require( 'dev-tools' ).angularify
+    angularify = require( 'syn-dev-tools' ).angularify
     LoginForm = require( './ctrl' )
 
     ctrl = new LoginForm( element )

@@ -2,18 +2,15 @@
   "name": "syn-auth",
   "version": "0.0.0",
   "description": "Login module",
-  "main": "dest/index.js",
+  "main": "dist/index.bundle.js",
   "scripts": {
     "test": "gulp test",
-    "install": "node_modules/.bin/gulp"
+    "prepublish": "gulp"
   },
   "browserify": {
     "transform": [
       "stringify"
     ]
-  },
-  "scripts": {
-    "test": "test"
   },
   "repository": {
     "type": "git",
@@ -26,15 +23,12 @@
   },
   "homepage": "https://github.com/soyundev/syn-auth",
   "devDependencies": {
-    "dev-tools": "git://github.com/soyundev/dev-tools.git",
-    "gulp": "3.9.1"
+    "jqlite": "0.2.34",
+    "syn-dev-tools": "0.1.2"
   },
   "dependencies": {
     "angular-bsfy": "1.4.8",
     "bluebird": "3.3.3",
     "pubsub": "1.0.2"
-  },
-  "devDependencies": {
-    "jqlite": "0.2.34"
   }
 }

@@ -1,6 +1,6 @@
 describe 'syn-auth.resource.Client', ->
 
-  auth = require( 'src/' )
+  auth = require( 'src/index.bundle' )
 
   Resource = auth.resource.Client
   URL = 'https://test.domain.com:3333/auth'

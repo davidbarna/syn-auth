@@ -1,6 +1,6 @@
 describe 'syn-auth.pubsub.Channel', ->
 
-  auth = require( 'src/' )
+  auth = require( 'src/index.bundle' )
   Channel = auth.pubsub.Channel
 
   beforeEach ->

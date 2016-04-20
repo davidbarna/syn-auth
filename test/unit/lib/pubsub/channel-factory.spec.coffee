@@ -1,6 +1,6 @@
 describe 'syn-auth.pubsub.channel.factory', ->
 
-  auth = require( 'src/')
+  auth = require( 'src/index.bundle')
   factory = auth.pubsub.channel.factory
   Channel = auth.pubsub.Channel
 

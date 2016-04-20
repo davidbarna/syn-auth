@@ -1,6 +1,6 @@
 describe 'syn-auth.Locale', ->
 
-  auth = require( 'src/' )
+  auth = require( 'src/index.bundle' )
 
   beforeEach ->
     @sinon = sinon.sandbox.create()

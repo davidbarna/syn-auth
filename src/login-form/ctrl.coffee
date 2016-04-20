@@ -1,4 +1,4 @@
-synAuth = require('../index')
+synAuth = require('../index.bundle')
 
 ###
  * # LoginFormCtrl

@@ -1,6 +1,6 @@
 describe 'syn-auth.Session', ->
 
-  auth = require( 'src/' )
+  auth = require( 'src/index.bundle' )
 
   beforeEach ->
     @sinon = sinon.sandbox.create()

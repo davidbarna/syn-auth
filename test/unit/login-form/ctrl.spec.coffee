@@ -4,7 +4,7 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
   Promise = require( 'bluebird' )
   Ctrl = require( 'src/login-form/ctrl' )
   tpl = require( 'src/login-form/tpl' )
-  auth = require( 'src' )
+  auth = require( 'src/index.bundle' )
   Auth = auth.resource.Auth.prototype
   factory = auth.pubsub.channel.factory
 
