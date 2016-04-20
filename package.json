@@ -24,7 +24,7 @@
   "homepage": "https://github.com/soyundev/syn-auth",
   "devDependencies": {
     "jqlite": "0.2.34",
-    "syn-dev-tools": "0.1.2"
+    "syn-dev-tools": "~0"
   },
   "dependencies": {
     "angular-bsfy": "1.4.8",
