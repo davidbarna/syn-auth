@@ -1,6 +1,6 @@
 {
   "name": "syn-auth",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Login module",
   "main": "dist/index.bundle.js",
   "scripts": {
