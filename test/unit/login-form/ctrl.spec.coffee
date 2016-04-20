@@ -5,8 +5,9 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
   Ctrl = require( 'src/login-form/ctrl' )
   tpl = require( 'src/login-form/tpl' )
   auth = require( 'src/index.bundle' )
+  core = require( 'syn-core' )
   Auth = auth.resource.Auth.prototype
-  factory = auth.pubsub.channel.factory
+  factory = core.pubsub.channel.factory
 
   beforeAll ->
     @sinon = sinon.sandbox.create()

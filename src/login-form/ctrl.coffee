@@ -1,4 +1,5 @@
-synAuth = require('../index.bundle')
+synAuth = require('../index')
+synCore = require('syn-core')
 
 ###
  * # LoginFormCtrl
@@ -19,7 +20,7 @@ synAuth = require('../index.bundle')
  * <syn-auth-login-form url="http://fake.com/login" channel="my-channel" />
  * <script type="text/javascript">
  *   angular.bootstrap( document.body, [ syn.auth.angular.getModule().name ] )
- *   sub = syn.auth.pubsub.channel.factory.create( 'my-channel', [ 'success', 'error' ] );
+ *   sub = syn.core.pubsub.channel.factory.create( 'my-channel', [ 'success', 'error' ] );
  *   sub.success.subscribe( function( session ){ console.log( session ); } )
  *   sub.error.subscribe( function( msg ){ console.warn( 'Error: ' + msg ); } )
  * </script>
@@ -84,7 +85,7 @@ class LoginFormCtrl
   ###
   setChannel: ( channelName ) ->
     @_pubsub?.destroy?()
-    @_pubsub = synAuth.pubsub.channel.factory.create( channelName, ['success', 'error'] )
+    @_pubsub = synCore.pubsub.channel.factory.create( channelName, ['success', 'error'] )
     return this
 
   ###
