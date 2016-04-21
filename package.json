@@ -4,7 +4,8 @@
   "description": "Login module",
   "main": "dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "src/scss"
   ],
   "scripts": {
     "test": "gulp test",
