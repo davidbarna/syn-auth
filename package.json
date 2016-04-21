@@ -2,7 +2,7 @@
   "name": "syn-auth",
   "version": "0.0.4",
   "description": "Login module",
-  "main": "dist/index.bundle.js",
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],
