@@ -1,6 +1,7 @@
 synAuth = require('../index')
 synCore = require('syn-core')
 
+i18n = synAuth.i18n
 ###
  * # LoginFormCtrl
  * Manages a basic login form.
@@ -67,6 +68,13 @@ class LoginFormCtrl
   ###
   init: ->
     @_auth = new synAuth.resource.Auth()
+
+    @render(
+      USER: i18n.translate( 'USER' )
+      PASSWORD: i18n.translate( 'PASSWORD' )
+      ACCESS: i18n.translate( 'ACCESS' )
+    )
+
     return this
 
   ###
@@ -116,13 +124,13 @@ class LoginFormCtrl
   ###
   handleErrors: ( e ) ->
     if e.status is 0 or e.status is 404
-      msg = 'Service unavailable. Try again later.'
+      msg = i18n.translate 'SERVICE_UNAVAILABLE'
     else if e.status is 401
-      msg = 'Authentication failed: wrong user or password.'
+      msg = i18n.translate 'AUTHENTICATION_FAILED'
     else if e.status is 429
-      msg = 'Too many attempts in a given amount of time. Try again soon.'
+      msg = i18n.translate 'TOO_MANY_ATTEMPTS'
     else
-      msg = 'Unknown error connecting to the server.'
+      msg = i18n.translate 'UNKNOWN_ERROR'
 
     @toggleErrors( msg )
     return

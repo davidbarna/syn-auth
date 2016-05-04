@@ -4,10 +4,10 @@ form.syn-form
       include ../imgs/icons/close.svg
   .syn-form_body
     .syn-form_row
-      input.syn-form_input( type="text" name="username" required placeholder="User")
+      input.syn-form_input( type="text" name="username" required placeholder="{{ USER }}")
     .syn-form_row
-      input.syn-form_input( type="password" name="password" required placeholder="Password")
-    button(type='submit').syn-form_submit Access
+      input.syn-form_input( type="password" name="password" required placeholder="{{ PASSWORD }}")
+    button(type='submit').syn-form_submit {{ ACCESS }}
 .syn-user-card
   .syn-user-card_picture
     ._placeholder

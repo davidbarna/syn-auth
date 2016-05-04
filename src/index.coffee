@@ -17,10 +17,13 @@ synAuth =
   Session: require( './lib/session' )
   User: require( './lib/user' )
   Locale: require( './lib/locale' )
+  i18n: require('syn-core').i18n.getInstance( 'syn-auth' )
 
+synAuth.i18n.translations( 'en', require( './config/i18n-en-us' ).translations )
+synAuth.i18n.translations( 'es', require( './config/i18n-es-es' ).translations )
 
 window.syn ?= {}
-window.syn.auth ?= synAuth
 window.syn.core ?= require( 'syn-core' )
+window.syn.auth ?= synAuth
 
 module.exports = synAuth

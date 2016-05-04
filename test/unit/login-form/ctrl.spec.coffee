@@ -10,27 +10,43 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
   factory = core.pubsub.channel.factory
 
   beforeAll ->
-    @sinon = sinon.sandbox.create()
     @elem = document.createElement( 'DIV' )
     @elem.innerHTML = require( 'src/login-form/tpl' )()
     document.body.appendChild( @elem )
 
-    @instance = new Ctrl( $( @elem ) )
-    @instance.init()
-    @instance.render = ->
-
   afterAll ->
     document.body.removeChild( @elem )
-    @instance.destroy()
-    @elem = @instance = null
+    @elem = null
+
+  beforeEach ->
+    @sandbox = sinon.sandbox.create()
+    @instance = new Ctrl( $( @elem ) )
+    @instance.render = @sandbox.stub()
+    @instance.init()
 
   afterEach ->
-    @sinon.restore()
+    @sandbox.restore()
+    @instance = null
+
+  describe '#init', ->
+
+    beforeEach ->
+      @sandbox.stub auth.i18n, 'translate'
+      auth.i18n.translate.withArgs( 'USER' ).returns( 'user' )
+      auth.i18n.translate.withArgs( 'PASSWORD' ).returns( 'password' )
+      auth.i18n.translate.withArgs( 'ACCESS' ).returns( 'access' )
+
+    it 'should call the render passing the translations', ->
+      @instance.render.should.have.been.calledWith(
+        ACCESS: 'access'
+        PASSWORD: 'password'
+        USER: 'user'
+      )
 
   describe '#setChannel', ->
 
     beforeEach ->
-      @sinon.spy factory, 'create'
+      @sandbox.spy factory, 'create'
       @instance.setChannel( 'my-channel' )
 
     it 'should create pubsub channel', ->
@@ -40,7 +56,7 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
   describe '#setUrl', ->
 
     beforeEach ->
-      @sinon.stub Auth, 'setUrl'
+      @sandbox.stub Auth, 'setUrl'
       @instance.setUrl( 'fake-url' )
 
     it 'should set url on auth service', ->
@@ -54,7 +70,7 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
         @resolve = resolve
         @reject = reject
       )
-      @sinon.stub Auth, 'login'
+      @sandbox.stub Auth, 'login'
         .returns @deferred
 
       @result = @instance.login( 'fake-user', 'fake-pass' )
@@ -68,9 +84,9 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
     describe 'when login is successfull', ->
 
       beforeEach ->
-        @sinon.stub @instance, 'showUserCard'
-        @sinon.stub @instance._pubsub.success, 'publish'
+        @sandbox.stub @instance, 'showUserCard'
         @session = user: -> 'my-user'
+        @instance._pubsub = success: publish: @sandbox.stub()
         @resolve( @session )
 
       it 'should publish success event and show user card', ( done ) ->
@@ -83,7 +99,7 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
     describe 'when an error is thrown', ->
 
       beforeEach ->
-        @sinon.spy @instance, 'handleErrors'
+        @sandbox.spy @instance, 'handleErrors'
         @reject( new Error( 'my-fake-error' ) )
 
       it 'should handle it', ( done ) ->
@@ -102,19 +118,48 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
   describe '#handleErrors', ->
 
     beforeEach ->
-      @sinon.stub @instance, 'toggleErrors'
-      @instance.handleErrors( new Error() )
+      @sandbox.stub @instance, 'toggleErrors'
+      @sandbox.stub auth.i18n, 'translate'
 
-    it 'should call toggle errors with corresponding message', ->
+      auth.i18n.translate.withArgs( 'SERVICE_UNAVAILABLE' )
+        .returns( 'error #1' )
+      auth.i18n.translate.withArgs( 'AUTHENTICATION_FAILED' )
+        .returns( 'error #2' )
+      auth.i18n.translate.withArgs( 'TOO_MANY_ATTEMPTS' )
+        .returns( 'error #3' )
+      auth.i18n.translate.withArgs( 'UNKNOWN_ERROR' )
+        .returns( 'error #4' )
+
+    it 'should call toggle errors with corresponding message on error 404', ->
+      @instance.handleErrors( { status: 404 } )
       @instance.toggleErrors.should.have.been.calledOnce
       @instance.toggleErrors.should.have.been
-        .calledWith 'Unknown error connecting to the server.'
+        .calledWith 'error #1'
+
+    it 'should call toggle errors with corresponding message on error 404', ->
+      @instance.handleErrors( { status: 401 } )
+      @instance.toggleErrors.should.have.been.calledOnce
+      @instance.toggleErrors.should.have.been
+        .calledWith 'error #2'
+
+    it 'should call toggle errors with corresponding message on error 404', ->
+      @instance.handleErrors( { status: 429 } )
+      @instance.toggleErrors.should.have.been.calledOnce
+      @instance.toggleErrors.should.have.been
+        .calledWith 'error #3'
+
+    it 'should call toggle errors with corresponding message on error 404', ->
+      @instance.handleErrors( { status: 'unknown' } )
+      @instance.toggleErrors.should.have.been.calledOnce
+      @instance.toggleErrors.should.have.been
+        .calledWith 'error #4'
+
 
   describe '#toggleErrors', ->
 
-    beforeAll ->
-      sinon.stub @instance, 'render'
-      sinon.stub @instance._pubsub.error, 'publish'
+    beforeEach ->
+      @instance._pubsub = error: publish: @sandbox.stub()
+      @instance.render = @sandbox.stub()
       @instance.toggleErrors( 'fake-message' )
 
     it 'should publish error event', ->
@@ -129,7 +174,7 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
 
     describe '#toggleErrors', ->
 
-      beforeAll ->
+      beforeEach ->
         @instance.toggleErrors( '' )
 
       it 'should hide errors element', ->
@@ -137,8 +182,8 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
 
   describe '#showUserCard', ->
 
-    beforeAll ->
-      @instance.render.reset()
+    beforeEach ->
+      @instance.render = @sandbox.stub()
       @instance.showUserCard( 'fake-user' )
 
     it 'should show user card element', ->
@@ -150,10 +195,11 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
 
   describe '#destroy', ->
 
-    beforeAll ->
-      sinon.stub @instance._form, 'off'
-      sinon.stub @instance._close, 'off'
-      sinon.stub @instance._pubsub, 'destroy'
+    beforeEach ->
+      @sandbox.stub @instance._form, 'off'
+      @sandbox.stub @instance._close, 'off'
+      @instance.render = @sandbox.stub()
+      @instance._pubsub = destroy: @sandbox.stub()
       @instance.destroy()
 
     it 'should unregister al events', ->
