@@ -8,16 +8,13 @@ html
     style(type="text/css").
       html {
         font-size: 10px;
-        font-family: Asap, sans-serif;
       }
       
       .demo-login-screen {
         position: relative;
         width: 100%;
-        height: 500px;
+        height: 100%;
         margin-top: 20px;
-        background-color: #0f70b1;
-        background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGklEQVQIW2P4//8/AxI2RuGAaBQOTADOAWEAjAwwnWPnCWYAAAAASUVORK5CYII=);
       }
       
       .demo-header input {
@@ -35,6 +32,7 @@ html
         span "login-demo-channel"
     .demo-login-screen
       syn-auth-login-form( url="loginUrl", channel="login-demo-channel" )
+        include ../imgs/logos/logo_mambo_home_tablet.svg
     script(type='text/javascript', src='/index.bundle.js')
     script(type='text/javascript').
       module = syn.auth.angular.getModule()

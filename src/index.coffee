@@ -1,9 +1,10 @@
 angular = require( 'angular-bsfy' )
+synUi = require( 'syn-ui' ).angular.getModule().name
 
 synAuth =
   angular:
     getModule: ->
-      ngModule = angular.module( 'syn-auth-demo', [] )
+      ngModule = angular.module( 'syn-auth-demo', [ synUi ] )
       ngModule
         .directive( 'synAuthLoginForm', require( './login-form/ng-directive' ) )
   getOrSet: require( './lib/get-or-set' )

@@ -4,6 +4,8 @@ export var translations = {
   'USER': 'user',
   'PASSWORD': 'password',
   'ACCESS': 'access',
+  'COPYRIGHT': '© 2015 - 2020 Areas. All rights reserved.',
+  'REMEMBER_ME': 'Remember me',
 
   // Login messages.
   'SERVICE_UNAVAILABLE': 'Service unavailable. Try again later.',

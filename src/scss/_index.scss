@@ -6,13 +6,29 @@
 
 syn-auth-login-form {
 
+  font-family: Asap, sans-serif;
+
+  .syn-form-logo {
+    position: relative;
+    width: 100%;
+    padding-bottom: 4rem;
+    text-align: center;
+  }
+
+  &.syn-auth-login-form {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: $c-brand;
+  }
+
   .syn-user-card {
     display: none;
     @include syn-box-centered;
   }
 
   &.syn-auth-login-form--loading {
-    .syn-form { @extend .syn-loading-inner; }
+    @extend .syn-loading-inner;
   }
 
   &.syn-auth-login-form--error {
@@ -25,13 +41,7 @@ syn-auth-login-form {
   }
 }
 
-@media ( min-width: 600px ) {
-  .syn-form, .syn-user-card {
-    @include syn-box;
-    max-width: 650px;
-  }
-
-  .syn-form {
-    @include syn-box-centered;
-  }
+.syn-form, .syn-user-card {
+  @include syn-box-centered;
+  max-width: 450px;
 }

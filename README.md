@@ -62,4 +62,4 @@ To see an example, execute the demo:
 $ gulp serve
 ```
 
-and open http://localhost:3000/doc/demo
+and open http://localhost:3000/docs/
