@@ -168,7 +168,7 @@ class LoginFormCtrl
     @_pubsub?.destroy?()
     @_form.off( 'submit', @_submitHandler )
     for input in @_inputs
-      input.off( 'focus', @_handleEventInput )
+      input.removeEventListener( 'focus', @_handleEventInput )
     return
 
 
