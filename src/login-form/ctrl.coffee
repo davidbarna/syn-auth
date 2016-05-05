@@ -19,7 +19,6 @@ i18n = synAuth.i18n
  *
  * ```html
  * <syn-auth-login-form url="http://fake.com/login" channel="my-channel" />
- *  include ../imgs/logos/logo.svg
  * <script type="text/javascript">
  *   angular.bootstrap( document.body, [ syn.auth.angular.getModule().name ] )
  *   sub = syn.core.pubsub.channel.factory.create( 'my-channel', [ 'success', 'error' ] );
@@ -51,13 +50,6 @@ class LoginFormCtrl
   _closeHandler: ( evt ) =>
     @toggleErrors( '' )
     return
-  
-  ###
-   * @return {this}
-  ###
-  _handleEventInput: =>
-    @_closeHandler()
-    return this
 
   ###
    * @constructor
@@ -71,7 +63,7 @@ class LoginFormCtrl
 
     @_inputs = @_elem.find( 'input' )
     for input in @_inputs
-      input.addEventListener( 'focus', @_handleEventInput )
+      input.addEventListener( 'focus', @_closeHandler )
 
   ###
    * @return {this}

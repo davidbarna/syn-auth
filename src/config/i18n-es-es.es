@@ -4,7 +4,7 @@ export var translations = {
   'USER': 'usuario',
   'PASSWORD': 'contraseña',
   'ACCESS': 'acceder',
-  'COPYRIGHT': '© 2015 - 2020 Areas. Todos los derechos reservados.',
+  'COPYRIGHT': '',
   'REMEMBER_ME': 'Recordar cuenta',
 
   // Login messages.

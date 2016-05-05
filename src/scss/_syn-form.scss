@@ -61,7 +61,7 @@
   position: relative;
   font-size: 1.4rem;
   line-height: 2rem;
-  color: $c-brand-tx;
+  color: $c-brand-fg;
 }
 
 
@@ -76,7 +76,7 @@
   @include syn-form-input( 1.6rem );
   background: $c-darkness;
   border: 0;
-  color: $c-brand-tx;
+  color: $c-brand-fg;
   text-transform: uppercase;
 }
 
@@ -95,7 +95,7 @@
   width: 100%;
   bottom: 5%;
   font-size: 1.3rem;
-  color: $c-brand-tx;
+  color: $c-brand-fg;
   text-align: center;
 }
 
