@@ -2,7 +2,7 @@
   padding: $spacing * .65 $spacing * 1.6;
   border-radius: $border-radius;
   font-size: $font-size;
-  font-family: Asap, sans-serif;
+  font-family: $font-family;
   width: 100%;
 }
 
@@ -93,9 +93,14 @@
 .syn-login-footer {
   position: absolute;
   width: 100%;
-  bottom: 5%;
+  bottom: 10%;
   font-size: 1.3rem;
   color: $c-brand-fg;
   text-align: center;
 }
 
+@media screen and ( max-height: 500px ) {
+  .syn-login-footer {
+    bottom: 5%;
+  }
+}

@@ -6,17 +6,24 @@
 
 syn-auth-login-form {
 
-  font-family: Asap, sans-serif;
+  font-family: $font-family;
 
   .syn-form-logo {
     position: relative;
     width: 100%;
-    padding-bottom: 4rem;
+    height: 80px;
     text-align: center;
+
+    logo {
+      svg {
+        max-width: 50%;
+      }
+    }
   }
 
   &.syn-auth-login-form {
     position: absolute;
+    min-height: 450px;
     width: 100%;
     height: 100%;
     background: $c-brand;
