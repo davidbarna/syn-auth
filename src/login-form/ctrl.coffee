@@ -58,10 +58,12 @@ class LoginFormCtrl
   constructor: ( @_elem ) ->
     @_elem.addClass( 'syn-auth-login-form' )
     @_form = @_elem.find( 'form' )
-    @_close = @_elem.find( 'close' )
 
     @_form.on( 'submit', @_submitHandler )
-    @_close.on( 'click', @_closeHandler )
+
+    @_inputs = @_elem.find( 'input' )
+    for input in @_inputs
+      input.addEventListener( 'focus', @_closeHandler )
 
   ###
    * @return {this}
@@ -73,6 +75,8 @@ class LoginFormCtrl
       USER: i18n.translate( 'USER' )
       PASSWORD: i18n.translate( 'PASSWORD' )
       ACCESS: i18n.translate( 'ACCESS' )
+      COPYRIGHT: i18n.translate( 'COPYRIGHT' )
+      REMEMBER_ME: i18n.translate( 'REMEMBER_ME' )
     )
 
     return this
@@ -163,7 +167,8 @@ class LoginFormCtrl
   destroy: ->
     @_pubsub?.destroy?()
     @_form.off( 'submit', @_submitHandler )
-    @_close.off( 'click', @_closeHandler )
+    for input in @_inputs
+      input.removeEventListener( 'focus', @_handleEventInput )
     return
 
 

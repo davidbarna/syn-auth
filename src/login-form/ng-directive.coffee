@@ -6,9 +6,12 @@ DashboardDirective =
   scope:
     url: '='
     channel: '@'
+  transclude: true
   template: require( './tpl' )
-  controller: [ '$scope', '$element', '$attrs', ( scope, element, attrs ) ->
+  controller: [ '$scope', '$element', '$transclude', ( scope, element, trans ) ->
 
+    # The original content of the directive is appended
+    trans( (clone, scope) -> element.find('logo').append( clone ) )
     angularify = require( 'syn-core' ).angularify
     LoginForm = require( './ctrl' )
 

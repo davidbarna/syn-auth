@@ -1,7 +1,3 @@
-@mixin syn-box( $border: $border-radius ) {
-  border-radius: $border;
-  background: #fff;
-}
 
 @mixin syn-box-centered {
   position: absolute;

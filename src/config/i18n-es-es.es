@@ -4,6 +4,8 @@ export var translations = {
   'USER': 'usuario',
   'PASSWORD': 'contraseña',
   'ACCESS': 'acceder',
+  'COPYRIGHT': '',
+  'REMEMBER_ME': 'Recordar cuenta',
 
   // Login messages.
   'SERVICE_UNAVAILABLE': 'Servicio no disponible. Inténtelo más tarde.',

@@ -35,12 +35,16 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
       auth.i18n.translate.withArgs( 'USER' ).returns( 'user' )
       auth.i18n.translate.withArgs( 'PASSWORD' ).returns( 'password' )
       auth.i18n.translate.withArgs( 'ACCESS' ).returns( 'access' )
+      auth.i18n.translate.withArgs( 'COPYRIGHT' ).returns( '' )
+      auth.i18n.translate.withArgs( 'REMEMBER_ME' ).returns( 'access' )
 
     it 'should call the render passing the translations', ->
       @instance.render.should.have.been.calledWith(
         ACCESS: 'access'
         PASSWORD: 'password'
         USER: 'user'
+        COPYRIGHT: 'COPYRIGHT'
+        REMEMBER_ME: 'Remember me'
       )
 
   describe '#setChannel', ->
@@ -197,12 +201,14 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
 
     beforeEach ->
       @sandbox.stub @instance._form, 'off'
-      @sandbox.stub @instance._close, 'off'
+      for input in @instance._inputs
+        @sandbox.stub input, 'removeEventListener'
       @instance.render = @sandbox.stub()
       @instance._pubsub = destroy: @sandbox.stub()
       @instance.destroy()
 
     it 'should unregister al events', ->
       @instance._pubsub.destroy.should.have.been.calledOnce
-      @instance._close.off.should.have.been.calledWith 'click'
       @instance._form.off.should.have.been.calledWith 'submit'
+      for input in @instance._inputs
+        input.removeEventListener.should.have.been.calledWith 'focus'
