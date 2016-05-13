@@ -1,11 +1,15 @@
+// Default font-family
+$font-family: Asap, sans-serif; 
+
 // Default border radius
-$border-radius: 4px !default;
+$border-radius: 8px !default;
 
 // Default spacing
 $spacing: 2rem !default;
 
 // Brand color
 $c-brand: #ffbd13 !default;
+$c-brand-fg: #fff !default;
 
 // Danger color for errors, alerts, etc
 $c-danger: #f34a65 !default;
@@ -17,3 +21,6 @@ $bgc-brand-fg: #14344f !default;
 // Colors for danger when placed as background color
 $bgc-danger: $c-danger !default;
 $bgc-danger-fg: #fff !default;
+
+// Used to darken background
+$c-darkness: rgba( #000, .35 ) !default;

@@ -18,6 +18,11 @@ If you are going to use components you can do either options:
 <link type="text/css" href="path/to/node_modules/syn-auth/dest/index.css" />
 ```
 
+If you can't see the font properly, copy it to the fonts folder
+```html
+/fonts
+```
+
 ## Services
 
 ### AuthResource
@@ -62,4 +67,4 @@ To see an example, execute the demo:
 $ gulp serve
 ```
 
-and open http://localhost:3000/doc/demo
+and open http://localhost:3000/docs/

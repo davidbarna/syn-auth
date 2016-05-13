@@ -1,6 +1,7 @@
 synAuth = require('../index')
 synCore = require('syn-core')
 
+i18n = synAuth.i18n
 ###
  * # LoginFormCtrl
  * Manages a basic login form.
@@ -57,16 +58,27 @@ class LoginFormCtrl
   constructor: ( @_elem ) ->
     @_elem.addClass( 'syn-auth-login-form' )
     @_form = @_elem.find( 'form' )
-    @_close = @_elem.find( 'close' )
 
     @_form.on( 'submit', @_submitHandler )
-    @_close.on( 'click', @_closeHandler )
+
+    @_inputs = @_elem.find( 'input' )
+    for input in @_inputs
+      input.addEventListener( 'focus', @_closeHandler )
 
   ###
    * @return {this}
   ###
   init: ->
     @_auth = new synAuth.resource.Auth()
+
+    @render(
+      USER: i18n.translate( 'USER' )
+      PASSWORD: i18n.translate( 'PASSWORD' )
+      ACCESS: i18n.translate( 'ACCESS' )
+      COPYRIGHT: i18n.translate( 'COPYRIGHT' )
+      REMEMBER_ME: i18n.translate( 'REMEMBER_ME' )
+    )
+
     return this
 
   ###
@@ -116,13 +128,13 @@ class LoginFormCtrl
   ###
   handleErrors: ( e ) ->
     if e.status is 0 or e.status is 404
-      msg = 'Service unavailable. Try again later.'
+      msg = i18n.translate 'SERVICE_UNAVAILABLE'
     else if e.status is 401
-      msg = 'Authentication failed: wrong user or password.'
+      msg = i18n.translate 'AUTHENTICATION_FAILED'
     else if e.status is 429
-      msg = 'Too many attempts in a given amount of time. Try again soon.'
+      msg = i18n.translate 'TOO_MANY_ATTEMPTS'
     else
-      msg = 'Unknown error connecting to the server.'
+      msg = i18n.translate 'UNKNOWN_ERROR'
 
     @toggleErrors( msg )
     return
@@ -155,7 +167,8 @@ class LoginFormCtrl
   destroy: ->
     @_pubsub?.destroy?()
     @_form.off( 'submit', @_submitHandler )
-    @_close.off( 'click', @_closeHandler )
+    for input in @_inputs
+      input.removeEventListener( 'focus', @_handleEventInput )
     return
 
 
