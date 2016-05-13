@@ -18,11 +18,11 @@
   margin-bottom: $spacing;
 }
 
-// CUSTOM FIELDS 
+// CUSTOM FIELDS
 .syn-form_input {
   @include syn-form-input( 1.4rem );
   border: 0;
-  color: $c-brand;  
+  color: $c-brand;
 }
 
 .syn-form_input:focus {
@@ -34,9 +34,9 @@
 
 .checkbox-custom {
   opacity: 0;
-  position: absolute;  
+  position: absolute;
 
-  + .checkbox-custom-label:before {
+  + .checkbox-custom-label::before {
     display: inline-block;
     width: $spacing;
     height: $spacing;
@@ -65,7 +65,7 @@
 }
 
 
-.checkbox-custom:checked + .checkbox-custom-label:before {
+.checkbox-custom:checked + .checkbox-custom-label::before {
   color: $c-brand;
   content: "\2713";
 }
