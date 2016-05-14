@@ -19,14 +19,14 @@ sessionFactory =
    * @return {Session}
   ###
   createFromAuthResponse: ( response ) ->
-    data = response.settings
+    data = response.settings || {}
 
     return new Session()
       .user new User( null, data.fullName )
       .locale new Locale( data.language, data.country )
-      .token response.token.access_token
+      .token response.token.access_token || ''
       .expiresIn response.token.expires_in
-      .refreshToken response.token.refresh_token
+      .refreshToken response.token.refresh_token || ''
 
   ###
    * Converts stringified session object to a

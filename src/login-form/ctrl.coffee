@@ -134,6 +134,7 @@ class LoginFormCtrl
     else if e.status is 429
       msg = i18n.translate 'TOO_MANY_ATTEMPTS'
     else
+      console.error(e.message)
       msg = i18n.translate 'UNKNOWN_ERROR'
 
     @toggleErrors( msg )
