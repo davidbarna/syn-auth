@@ -27,6 +27,7 @@ sessionFactory =
       .token response.token.access_token || ''
       .expiresIn response.token.expires_in
       .refreshToken response.token.refresh_token || ''
+      .ticket response.ticket or ''
 
   ###
    * Converts stringified session object to a
@@ -43,6 +44,7 @@ sessionFactory =
     session.token data._token if !!data._token
     session.refreshToken data._refreshToken if !!data._refreshToken
     session.expiration new Date( data._expiration ) if !!data._expiration
+    session.ticket data._ticket if !!data._ticket
 
     return session
 
