@@ -87,18 +87,3 @@
   color: $bgc-danger-fg;
   text-align: center;
 }
-
-.syn-login-footer {
-  position: absolute;
-  width: 100%;
-  bottom: 10%;
-  font-size: 1.3rem;
-  color: $c-brand-fg;
-  text-align: center;
-}
-
-@media screen and ( max-height: 500px ) {
-  .syn-login-footer {
-    bottom: 5%;
-  }
-}
