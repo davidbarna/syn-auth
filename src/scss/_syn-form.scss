@@ -26,10 +26,8 @@
 }
 
 .syn-form_input:focus {
-  border: 1px solid $c-brand;
-  outline-width: 3px;
-  outline-style: outset;
-  outline-color: $c-darkness;
+  box-shadow: inset 0 0 0 3px darken( $c-brand, 15%);
+  outline-width: 0;
 }
 
 .checkbox-custom {
