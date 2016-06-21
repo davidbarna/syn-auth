@@ -1,3 +1,5 @@
+$syn-auth-login-form-width: 450px;
+$syn-auth-login-form-height: 450px;
 
 syn-auth-login-form {
 
@@ -19,7 +21,7 @@ syn-auth-login-form {
 
   &.syn-auth-login-form {
     position: absolute;
-    min-height: 450px;
+    min-height: $syn-auth-login-form-height;
     width: 100%;
     height: 100%;
     background: $c-brand;
@@ -40,7 +42,7 @@ syn-auth-login-form {
 
   .syn-form, .syn-user-card {
     @include syn-box-centered;
-    max-width: 450px;
+    max-width: $syn-auth-login-form-width;
   }
 
   // .syn-user-card {
