@@ -20,20 +20,21 @@
 
 // CUSTOM FIELDS
 .syn-form_input {
+  // scss-lint:disable VendorPrefix
   @include syn-form-input( 1.4rem );
   border: 0;
   color: $c-brand;
   -webkit-text-fill-color: $c-brand !important;
 
   &:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    -webkit-box-shadow: 0 0 0 1000px #fff inset;
   }
 
 }
 
 .syn-form_input:focus {
-  box-shadow: inset 0 0 0 3px darken( $c-brand, 15%);
   outline-width: 0;
+  box-shadow: inset 0 0 0 3px darken( $c-brand, 15% );
 }
 
 .checkbox-custom {
