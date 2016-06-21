@@ -25,11 +25,6 @@ syn-auth-login-form {
     background: $c-brand;
   }
 
-  .syn-user-card {
-    display: none;
-    @include syn-box-centered;
-  }
-
   &.syn-auth-login-form--loading {
     @extend .syn-loading-inner;
   }
@@ -47,4 +42,9 @@ syn-auth-login-form {
     @include syn-box-centered;
     max-width: 450px;
   }
+
+  // .syn-user-card {
+  //   display: none;
+  //   @include syn-box-centered;
+  // }
 }
