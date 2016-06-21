@@ -1,3 +1,5 @@
+// scss-lint:disable VendorPrefix
+
 @mixin syn-form-input( $font-size ) {
   padding: $spacing * .65 $spacing * 1.6;
   border-radius: $border-radius;
@@ -20,7 +22,6 @@
 
 // CUSTOM FIELDS
 .syn-form_input {
-  // scss-lint:disable VendorPrefix
   @include syn-form-input( 1.4rem );
   border: 0;
   color: $c-brand;
@@ -35,6 +36,7 @@
 .syn-form_input:focus {
   outline-width: 0;
   box-shadow: inset 0 0 0 3px darken( $c-brand, 15% );
+  -webkit-box-shadow: inset 0 0 0 3px darken( $c-brand, 15% );
 }
 
 .checkbox-custom {
