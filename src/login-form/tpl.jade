@@ -4,7 +4,7 @@ form.syn-form
   .syn-form_errors {{ errors }}
   .syn-form_body
     .syn-form_row
-      input.syn-form_input( type="text" name="username" required placeholder="{{ USER }}" )
+      input.syn-form_input( type="text" name="username" autocapitalize="off" required placeholder="{{ USER }}" )
     .syn-form_row
       input.syn-form_input( type="password" name="password" required placeholder="{{ PASSWORD }}" )
     //- .syn-form_row
