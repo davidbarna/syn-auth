@@ -15,7 +15,7 @@ syn-auth-login-form {
       }
     }
   }
-  
+
   &.syn-auth-login-form {
     position: absolute;
     min-height: 450px;
@@ -41,9 +41,9 @@ syn-auth-login-form {
     .syn-form { display: none; }
     .syn-user-card { display: block; }
   }
-}
 
-.syn-form, .syn-user-card {
-  @include syn-box-centered;
-  max-width: 450px;
+  .syn-form, .syn-user-card {
+    @include syn-box-centered;
+    max-width: 450px;
+  }
 }
