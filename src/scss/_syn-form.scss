@@ -1,7 +1,10 @@
+// scss-lint:disable VendorPrefix
+
 @mixin syn-form-input( $font-size ) {
-  padding: $spacing*.75;
+  padding: $spacing * .65 $spacing * 1.6;
   border-radius: $border-radius;
   font-size: $font-size;
+  font-family: $font-family;
   width: 100%;
 }
 
@@ -10,44 +13,86 @@
 }
 
 .syn-form_body {
-  padding: $spacing;
+  padding: $spacing * 1.5 $spacing * 2;
 }
 
 .syn-form_row {
-  margin-bottom: $spacing/2;
+  margin-bottom: $spacing;
 }
 
+// CUSTOM FIELDS
 .syn-form_input {
   @include syn-form-input( 1.4rem );
-  background: #eff2f5;
   border: 0;
+  color: $c-brand;
+  -webkit-text-fill-color: $c-brand !important;
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  }
+
 }
 
+.syn-form_input:focus {
+  outline-width: 0;
+  box-shadow: inset 0 0 0 3px darken( $c-brand, 15% );
+  -webkit-box-shadow: inset 0 0 0 3px darken( $c-brand, 15% );
+}
+
+.checkbox-custom {
+  opacity: 0;
+  position: absolute;
+
+  + .checkbox-custom-label::before {
+    display: inline-block;
+    width: $spacing;
+    height: $spacing;
+    padding: $spacing / 6;
+    margin-right: $spacing / 2;
+    vertical-align: middle;
+    background: #fff;
+    border-radius: $border-radius;
+    text-align: center;
+    content: "";
+  }
+}
+
+.checkbox-custom, .checkbox-custom-label {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: $spacing / 2;
+  cursor: pointer;
+}
+
+.checkbox-custom-label {
+  position: relative;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  color: $c-brand-fg;
+}
+
+
+.checkbox-custom:checked + .checkbox-custom-label::before {
+  color: $c-brand;
+  content: "\2713";
+}
+
+// END CUSTOM FIELDS
+
 .syn-form_submit {
-  @include syn-form-input( 2.4rem );
-  margin-top: $spacing;
-  background: $bgc-brand;
+  @include syn-form-input( 1.6rem );
+  background: $c-darkness;
   border: 0;
-  color: $bgc-brand-fg;
+  color: $c-brand-fg;
+  text-transform: uppercase;
 }
 
 .syn-form_errors {
   display: none;
   position: relative;
-  padding: $spacing;
-  background: $bgc-danger;
-  font-size: 1.4rem;
+  padding: $spacing $spacing * 2 0;
+  margin-top: $spacing;
+  font-size: 1.6rem;
   color: $bgc-danger-fg;
-}
-
-.syn-form_errors_close {
-  position: absolute;
-  width: 1.3rem;
-  top: 0;
-  right: 0;
-  padding: $spacing/2;
-
-  path {
-    fill: $bgc-danger-fg;
-  }
+  text-align: center;
 }

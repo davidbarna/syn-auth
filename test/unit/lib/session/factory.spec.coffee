@@ -1,6 +1,6 @@
 describe 'syn-auth.session.factory', ->
 
-  auth = require( 'src/' )
+  auth = require( 'src/index.bundle' )
   data =
     settings:
       country: 'mx'
@@ -10,6 +10,7 @@ describe 'syn-auth.session.factory', ->
       expires_in: 60 * 60
       refresh_token: 'fake-refresh-token'
       access_token: 'fake-access-token'
+    ticket: 'some-hash'
 
   describe '#createFromAuthResponse', ->
 

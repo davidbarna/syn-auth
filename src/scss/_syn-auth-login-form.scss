@@ -1,0 +1,76 @@
+$syn-auth-login-form-width: 450px;
+$syn-auth-login-form-height: 450px;
+$syn-auth-login-footer-fz: 1.3rem;
+$syn-auth-login-footer-height: $spacing * 2 + $syn-auth-login-footer-fz;
+
+syn-auth-login-form {
+
+  font-family: $font-family;
+
+  .syn-form-logo {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    text-align: center;
+
+    logo {
+      svg, img {
+        max-width: 80%;
+        max-height: 80%;
+      }
+    }
+  }
+
+  &.syn-auth-login-form {
+    position: absolute;
+    min-height: $syn-auth-login-form-height;
+    width: 100%;
+    height: 100%;
+    background: $c-brand;
+  }
+
+  &.syn-auth-login-form--loading {
+    @extend .syn-loading-inner;
+  }
+
+  &.syn-auth-login-form--error {
+    .syn-form_errors { display: block; }
+  }
+
+  &.syn-auth-login-form--success {
+    .syn-form { display: none; }
+    .syn-user-card { display: block; }
+  }
+
+  .syn-form, .syn-user-card {
+    @include syn-box-centered;
+    max-width: $syn-auth-login-form-width;
+  }
+
+  // .syn-user-card {
+  //   display: none;
+  //   @include syn-box-centered;
+  // }
+  //
+
+  .syn-login-body {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: $syn-auth-login-footer-height;
+    left: 0;
+  }
+
+  .syn-login-footer {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: $syn-auth-login-footer-height;
+    bottom: 0;
+    font-size: $syn-auth-login-footer-fz;
+    color: $c-brand-fg;
+    text-align: center;
+    padding-top: $spacing;
+  }
+}

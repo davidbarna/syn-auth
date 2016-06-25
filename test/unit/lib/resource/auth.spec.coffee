@@ -14,7 +14,7 @@ describe 'syn-auth.resource.Auth', ->
       expires_in: 0
 
   Promise = require( 'bluebird' )
-  auth = require( 'src/' )
+  auth = require( 'src/index.bundle' )
   Client = auth.resource.Client.prototype
 
   beforeEach ->

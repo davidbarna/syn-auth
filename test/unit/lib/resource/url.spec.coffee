@@ -1,6 +1,6 @@
 describe 'syn-auth.resource.Url', ->
 
-  auth = require( 'src/' )
+  auth = require( 'src/index.bundle' )
 
   beforeEach ->
     @instance = new auth.resource.Url()

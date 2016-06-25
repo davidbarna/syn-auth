@@ -4,20 +4,18 @@ html
     meta(name='format-detection', content='telephone=no')
     meta(name='viewport', content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height')
     meta(name='msapplication-tap-highlight', content='no')
-    link(rel='stylesheet' type='text/css', href='../../index.css')
+    link(rel='stylesheet' type='text/css', href='/index.css')
     style(type="text/css").
-      html {
+      html, body {
         font-size: 10px;
-        font-family: Asap, sans-serif;
+        margin: 0;
       }
       
       .demo-login-screen {
         position: relative;
         width: 100%;
-        height: 500px;
+        height: 100%;
         margin-top: 20px;
-        background-color: #0f70b1;
-        background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGklEQVQIW2P4//8/AxI2RuGAaBQOTADOAWEAjAwwnWPnCWYAAAAASUVORK5CYII=);
       }
       
       .demo-header input {
@@ -30,15 +28,19 @@ html
       h1 Syn auth
       h2 #{"<syn-auth-login-form @url @channel />"}
       div @url:
-        input( type="test" ng-model="loginUrl" placeholder="Copy a webservice url to test the component")
+        input( ng-model="loginUrl")
       div @channel:
-      pre(style="display: block;") 
-        div {{ loginUrl = "http://api.fake.com/login" }}
+        span "login-demo-channel"
     .demo-login-screen
       syn-auth-login-form( url="loginUrl", channel="login-demo-channel" )
-    script(type='text/javascript', src='../../index.bundle.js')
+        include ../imgs/logos/logo-example.svg
+    script(type='text/javascript', src='/index.bundle.js')
     script(type='text/javascript').
-      angular.bootstrap( document.body, [ syn.auth.angular.getModule().name ] )
-      sub = syn.auth.pubsub.channel.factory.create( 'login-demo-channel', [ 'success', 'error' ] );
+      module = syn.auth.angular.getModule()
+        .run( function( $rootScope ) {
+          $rootScope.loginUrl = 'http://api.my-domain.com/login'
+        } )
+      angular.bootstrap( document.body, [ module.name ] )
+      sub = syn.core.pubsub.channel.factory.create( 'login-demo-channel', [ 'success', 'error' ] );
       sub.success.subscribe( function( user ){ console.log( user ); } )
       sub.error.subscribe( function( msg ){ console.warn( 'Error: ' + msg ); } )

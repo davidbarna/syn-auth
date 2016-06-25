@@ -1,6 +1,6 @@
 describe 'syn-auth.getOrSet', ->
 
-  auth = require( 'src/' )
+  auth = require( 'src/index.bundle' )
   obj = {}
 
   describe 'when a value is provided', ->
