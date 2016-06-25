@@ -1,3 +1,5 @@
+// scss-lint:disable VendorPrefix
+
 @mixin syn-form-input( $font-size ) {
   padding: $spacing * .65 $spacing * 1.6;
   border-radius: $border-radius;
@@ -23,13 +25,18 @@
   @include syn-form-input( 1.4rem );
   border: 0;
   color: $c-brand;
+  -webkit-text-fill-color: $c-brand !important;
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  }
+
 }
 
 .syn-form_input:focus {
-  border: 1px solid $c-brand;
-  outline-width: 3px;
-  outline-style: outset;
-  outline-color: $c-darkness;
+  outline-width: 0;
+  box-shadow: inset 0 0 0 3px darken( $c-brand, 15% );
+  -webkit-box-shadow: inset 0 0 0 3px darken( $c-brand, 15% );
 }
 
 .checkbox-custom {
@@ -88,19 +95,4 @@
   font-size: 1.6rem;
   color: $bgc-danger-fg;
   text-align: center;
-}
-
-.syn-login-footer {
-  position: absolute;
-  width: 100%;
-  bottom: 10%;
-  font-size: 1.3rem;
-  color: $c-brand-fg;
-  text-align: center;
-}
-
-@media screen and ( max-height: 500px ) {
-  .syn-login-footer {
-    bottom: 5%;
-  }
 }
