@@ -43,7 +43,6 @@ class Session
    * @return {string}
   ###
   token: ( token ) ->
-    console.log('setting token: ', token ) if !!token
     return getOrSet( this, '_token', token )
 
   ###

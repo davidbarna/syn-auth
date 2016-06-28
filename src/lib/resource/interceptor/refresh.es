@@ -8,24 +8,6 @@ const REFRESH_URL = 'http://dev-api.grupoareas.com/stocks/v1.0/refresh'
 
 let tokenRefresherSingletonInstance = null
 
-// window.setTimeout(function () {
-//   console.log('error request')
-//   // const LOGIN_URL = 'http://dev-api.grupoareas.com/stocks/v1.0/login'
-//   // let auth = new window.syn.auth.resource.Auth(LOGIN_URL)
-
-//   // auth.login('dalmeida', 'bla')
-//   // .then((req) => {
-
-//   // })
-//   const URL = 'http://dev-api.grupoareas.com/stocks/v1.0/logins'
-//   let retryReq = new window.syn.auth.resource.Client(URL)
-//   return retryReq.request('POST', {
-//     headers: {
-//       Authorization: 'Basic ' + window.btoa('dalmeida:no')
-//     }
-//   })
-// }, 10000)
-
 /**
  * Adds the necessary interceptor for 419 response codes.
  * Will try to refresh the token and retries the last request
@@ -88,19 +70,12 @@ class TokenRefresher {
     // })
 
     let gSession = window.syn.auth.session.global
-    debugger
-    // if (!gSession.get()) {
-    //   document.href.location = '/login-page'
-    // }
+    // gSession.get()
     gSession.on(gSession.CHANGE, (session) => {
+      debugger
       console.log('session: ')
       this.session = session
     })
-    // this._pubsub = pubsub.channel.factory.create(session.CHANGE, ['success'])
-    // this._pubsub.success.subscribe((session) => {
-    //   debugger
-    //   this.session = session
-    // })
   }
 
   /**
@@ -109,12 +84,6 @@ class TokenRefresher {
   _clearSession () {
     let gSession = window.syn.auth.session.global
     gSession.clear()
-    document.href.location = '/login-page'
-    // let keys = Object.keys(this.session)
-    // for (let key in keys) {
-    //   delete this.session[key]
-    // }
-    // this.session = null
   }
 
   resetAttempts () {
@@ -174,12 +143,6 @@ class TokenRefresher {
     let method = data.method
     let options = data.options
     let retryReq = new window.syn.auth.resource.Client(url)
-    console.log('retry')
-    options = {
-      headers: {
-        'Authorization': 'Basic ' + window.btoa('dalmeida:areas')
-      }
-    }
     return retryReq.request(method, options)
   }
 
