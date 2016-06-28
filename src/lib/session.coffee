@@ -53,6 +53,13 @@ class Session
   refreshToken: ( refreshToken ) ->
     return getOrSet( this, '_refreshToken', refreshToken )
 
+  ###
+   * @param  {string} ticket
+   * @return {string}
+  ###
+  ticket: ( ticket ) ->
+    return getOrSet( this, '_ticket', ticket )
+
 
 
 module.exports = Session
