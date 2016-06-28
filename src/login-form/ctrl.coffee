@@ -40,7 +40,7 @@ class LoginFormCtrl
   ###
   _submitHandler: ( evt ) =>
     form = evt.target
-    @login( form.username.value, form.password.value )
+    @login( form.username.value, form.password.value, form.remember.checked )
     return
 
   ###
@@ -104,15 +104,16 @@ class LoginFormCtrl
    * Trys to login and manages errors
    * @param  {string} username
    * @param  {string} password
+   * @param  {boolean} remember
    * @return {Promise}
   ###
-  login: ( username, password ) ->
+  login: ( username, password, remember ) ->
     # Reset form
     document.activeElement.blur()
     @toggleErrors( '' )
     @_elem.addClass( @LOADING_CLASS )
 
-    @_auth.login( username, password )
+    @_auth.login( username, password, remember )
       .then ( session ) =>
         @_pubsub?.success.publish( session )
         @showUserCard( session.user() )

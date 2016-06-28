@@ -11,13 +11,14 @@
  * ```coffeescript
  * client = new ResourceClient( 'http://mydomain.com/users' )
  * client.get( headers: [ token: 'myAuthToken' ] )
- * 	.then ( users ) ->
- * 		console.log( users )
+ *   .then ( users ) ->
+ *    console.log( users )
  * ```
 ###
 class ResourceClient
 
   ResourceUrl = require( './url' )
+  TokenRefresher = require( './interceptor/refresh' )
 
   ###
    * Default timeout for all requests if undefined
@@ -32,6 +33,9 @@ class ResourceClient
   constructor: ( url ) ->
     @_url = new ResourceUrl( url )
 
+    ResourceClient.interceptor ?=
+      new window.syn.auth.resource.InterceptorManager()
+
   ###
    * Sets url of server's service
    * @param {string} url Must be absolute url
@@ -40,11 +44,11 @@ class ResourceClient
   setUrl: ( url ) ->
     @_url.url( url )
     return this
-    
+
   ###
    * Sends a http request and returns a promise resolved by its response
    * @param  {string} method
-   * @param  {bject} [opts] Send options like 'headers'
+   * @param  {object} [opts] Send options like 'headers'
    * @return {Promise}
   ###
   request: ( method, opts ) ->
@@ -66,7 +70,17 @@ class ResourceClient
   post: ( opts ) ->
     @request( 'POST', opts )
 
+  enableInterceptors: ->
+    TokenRefresher.enable()
+    return this
 
+
+
+###
+ * Request interceptor
+ * @type {?Object}
+###
+ResourceClient.interceptor = null
 
 ###
  * Sets timeout for all resquests
@@ -90,8 +104,9 @@ ResourceClient.setTimeout = ( ms ) ->
 ###
 getHttpRequestFromUrl = ( method, url, opts = {} ) ->
   Promise = require( 'bluebird' )
+
   new Promise ( resolve, reject ) ->
-    xhr = new XMLHttpRequest()
+    xhr = new XMLHttpRequest( opts )
     xhr.timeout = ResourceClient.timeout || ResourceClient.DEFAULT_TIMEOUT
 
     xhr.addEventListener( 'error', ( evt ) ->
@@ -100,8 +115,10 @@ getHttpRequestFromUrl = ( method, url, opts = {} ) ->
     xhr.addEventListener( 'timeout', ( evt ) ->
       reject( getTimeoutError( evt.target ) )
     )
-    xhr.addEventListener( 'load', ( evt ) ->
-      processResponse( evt.target, resolve, reject )
+    xhr.addEventListener( 'load', ( response ) ->
+      ResourceClient.interceptor.process( 'response', response )
+      .then ( processedResponse ) ->
+        processResponse( processedResponse.target, resolve, reject )
     )
     xhr.open( method, url, true )
 
