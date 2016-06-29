@@ -11,11 +11,7 @@ synAuth =
         .directive( 'synAuthLoginForm', require( './login-form/ng-directive' ) )
   getOrSet: require( './lib/get-or-set' )
   resource:
-    Client: require( './lib/resource/client' )
     Auth: require( './lib/resource/auth' )
-    Url: require( './lib/resource/url' )
-    InterceptorManager: require( './lib/resource/interceptor/manager' ).InterceptorManager
-    XHRCache: require( './lib/resource/interceptor/modules/xhr-cache' ).XHRCache
   session:
     factory: require( './lib/session/factory' )
     global: require( './lib/session/global' )

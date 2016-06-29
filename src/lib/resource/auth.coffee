@@ -19,7 +19,7 @@
 class AuthResource
 
   Promise = require( 'bluebird' )
-  ResourceClient = require( './client' )
+  ResourceClient = window.syn.core.resource.Client
 
   ###
    * @constructor
