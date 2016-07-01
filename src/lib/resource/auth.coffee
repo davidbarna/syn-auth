@@ -27,7 +27,6 @@ class AuthResource
   ###
   constructor: ( url ) ->
     @_resource = new ResourceClient( url )
-      .enableInterceptors()
 
   ###
    * Sets url of server's service
