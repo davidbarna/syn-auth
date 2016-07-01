@@ -42,7 +42,7 @@ class AuthResource
    * @param  {boolean} stayLoggedIn
    * @return {Session}
   ###
-  login: ( username, password, stayLoggedIn = false ) =>
+  login: ( username, password, stayLoggedIn = false ) ->
     new Promise ( resolve, reject ) =>
       hash = window.btoa( "#{username}:#{password}" )
       opts = headers: 'Authorization': "Basic #{hash}"

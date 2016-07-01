@@ -41,7 +41,9 @@ class LoginFormCtrl
   ###
   _submitHandler: ( evt ) =>
     form = evt.target
-    @login( form.username.value, form.password.value, form[STAY_LOGGED_IN_FIELD_NAME].checked )
+    @login(
+      form.username.value, form.password.value, form[@STAY_LOGGED_IN_FIELD_NAME].checked
+    )
     return
 
   ###
