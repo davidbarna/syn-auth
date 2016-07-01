@@ -33,6 +33,7 @@ class LoginFormCtrl
   ERRORS_CLASS: 'syn-auth-login-form--error'
   LOADING_CLASS: 'syn-auth-login-form--loading'
   SUCCESS_CLASS: 'syn-auth-login-form--success'
+  STAY_LOGGED_IN_FIELD_NAME: 'stay-logged-in'
 
   ###
    * @param  {Event} evt
@@ -40,7 +41,7 @@ class LoginFormCtrl
   ###
   _submitHandler: ( evt ) =>
     form = evt.target
-    @login( form.username.value, form.password.value, form.remember.checked )
+    @login( form.username.value, form.password.value, form[STAY_LOGGED_IN_FIELD_NAME].checked )
     return
 
   ###
@@ -104,16 +105,16 @@ class LoginFormCtrl
    * Trys to login and manages errors
    * @param  {string} username
    * @param  {string} password
-   * @param  {boolean} remember
+   * @param  {boolean} stayLoggedIn
    * @return {Promise}
   ###
-  login: ( username, password, remember ) ->
+  login: ( username, password, stayLoggedIn = false ) ->
     # Reset form
     document.activeElement.blur()
     @toggleErrors( '' )
     @_elem.addClass( @LOADING_CLASS )
 
-    @_auth.login( username, password, remember )
+    @_auth.login( username, password, stayLoggedIn )
       .then ( session ) =>
         @_pubsub?.success.publish( session )
         @showUserCard( session.user() )

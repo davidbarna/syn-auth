@@ -59,6 +59,13 @@ class Session
   ticket: ( ticket ) ->
     return getOrSet( this, '_ticket', ticket )
 
+  ###
+   * Remember me getter/setter
+   * @param {boolean}
+   * @return {User|boolean}
+  ###
+  stayLoggedIn: ( stayLoggedIn ) ->
+    return getOrSet( this, '_stayLoggedIn', stayLoggedIn )
 
 
 module.exports = Session

@@ -39,10 +39,10 @@ class AuthResource
    * Posts basic auth to server and returns parsed session object
    * @param  {string} username
    * @param  {string} password
-   * @param  {boolean} remember
+   * @param  {boolean} stayLoggedIn
    * @return {Session}
   ###
-  login: ( username, password, remember = false ) =>
+  login: ( username, password, stayLoggedIn = false ) =>
     new Promise ( resolve, reject ) =>
       hash = window.btoa( "#{username}:#{password}" )
       opts = headers: 'Authorization': "Basic #{hash}"
@@ -52,10 +52,10 @@ class AuthResource
           .then ( response ) ->
             factory = require( '../../lib/session/factory' )
             session = factory.createFromAuthResponse( response )
+            session.stayLoggedIn( stayLoggedIn )
             session.user()
               .username( username )
               .password( password )
-              .remember( remember )
             return session
       )
 

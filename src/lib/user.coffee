@@ -62,14 +62,6 @@ class User
       return new Locale( lang, country )
     )
 
-  ###
-   * Remember me getter/setter
-   * @param {boolean}
-   * @return {User|boolean}
-  ###
-  remember: ( remember ) ->
-    return getOrSet( this, '_remember', remember )
-
 
 
 module.exports = User
