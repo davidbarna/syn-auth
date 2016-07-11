@@ -11,6 +11,7 @@ describe 'syn-auth.session.factory', ->
       refresh_token: 'fake-refresh-token'
       access_token: 'fake-access-token'
     ticket: 'some-hash'
+    stayLoggedIn: true
 
   describe '#createFromAuthResponse', ->
 

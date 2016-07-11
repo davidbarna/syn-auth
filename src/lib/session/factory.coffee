@@ -45,6 +45,7 @@ sessionFactory =
     session.refreshToken data._refreshToken if !!data._refreshToken
     session.expiration new Date( data._expiration ) if !!data._expiration
     session.ticket data._ticket if !!data._ticket
+    session.stayLoggedIn data._stayLoggedIn if !!data._stayLoggedIn
 
     return session
 

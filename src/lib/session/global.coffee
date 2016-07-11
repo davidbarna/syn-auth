@@ -72,7 +72,6 @@ class PersistentSession extends EventEmitter
   ###
   set: ( session ) ->
     return @clear() if !session
-
     serializedSession = serializeSession( session )
     storage.setItem( @NAMESPACE , serializedSession )
     @_session = session

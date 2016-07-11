@@ -15,7 +15,8 @@ describe 'syn-auth.resource.Auth', ->
 
   Promise = require( 'bluebird' )
   auth = require( 'src/index.bundle' )
-  Client = auth.resource.Client.prototype
+  core = require( 'syn-core' )
+  Client = core.resource.Client.prototype
 
   beforeEach ->
     @sinon = sinon.sandbox.create()
