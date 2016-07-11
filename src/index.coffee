@@ -1,5 +1,8 @@
 angular = require( 'angular-bsfy' )
 
+window.syn ?= {}
+window.syn.core ?= require( 'syn-core' )
+
 synAuth =
   angular:
     getModule: ->
@@ -8,9 +11,7 @@ synAuth =
         .directive( 'synAuthLoginForm', require( './login-form/ng-directive' ) )
   getOrSet: require( './lib/get-or-set' )
   resource:
-    Client: require( './lib/resource/client' )
     Auth: require( './lib/resource/auth' )
-    Url: require( './lib/resource/url' )
   session:
     factory: require( './lib/session/factory' )
     global: require( './lib/session/global' )
@@ -22,8 +23,6 @@ synAuth =
 synAuth.i18n.translations( 'en', require( './config/i18n-en-us' ).translations )
 synAuth.i18n.translations( 'es', require( './config/i18n-es-es' ).translations )
 
-window.syn ?= {}
-window.syn.core ?= require( 'syn-core' )
 window.syn.auth ?= synAuth
 
 module.exports = synAuth

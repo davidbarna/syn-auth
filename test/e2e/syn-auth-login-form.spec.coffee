@@ -10,6 +10,7 @@ describe '<syn-auth-login-form />', ->
     username: inputs.get(1)
     password: inputs.get(2)
     submit: element.all( By.tagName('button') ).get(0)
+    stayLoggedIn: element.all( By.id( 'stay-logged-in' ) ).get( 0 )
 
   beforeAll ->
     browser.get( '/docs/' )
@@ -25,6 +26,9 @@ describe '<syn-auth-login-form />', ->
         elements.errors.getText().then (text) ->
           return text isnt ''
       , 3000)
+
+    it 'should show the remember me checkbox', ->
+      expect( elements.stayLoggedIn.isDisplayed() ).toEqual false
 
     it 'should display error message in the UI', ->
       expect( elements.errors.getText() ).toEqual 'Service unavailable. Try again later.'
