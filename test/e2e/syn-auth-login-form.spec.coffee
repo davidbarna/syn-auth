@@ -4,11 +4,16 @@ describe '<syn-auth-login-form />', ->
 
   inputs = element.all( By.tagName('input') )
   elements =
-    errors: element.all( By.className( ERRORS_CLASS ) ).get(0)
-    username: inputs.get(1)
-    password: inputs.get(2)
-    submit: element.all( By.tagName('button') ).get(0)
-    stayLoggedIn: element.all( By.id( 'stay-logged-in' ) ).get( 0 )
+    demo1:
+      errors: element.all( By.className( ERRORS_CLASS ) ).get(0)
+      username: inputs.get(1)
+      password: inputs.get(2)
+      submit: element.all( By.tagName('button') ).get(0)
+      rememberMe: element.all( By.className( 'syn-login_remember-me' ) ).get( 0 )
+      stayLoggedIn: element.all( By.className( 'syn-login_stay-logged-in' ) ).get( 0 )
+    demo2:
+      rememberMe: element.all( By.className( 'syn-login_remember-me' ) ).get( 1 )
+      stayLoggedIn: element.all( By.className( 'syn-login_stay-logged-in' ) ).get( 1 )
 
   beforeAll ->
     browser.get( '/docs/' )
@@ -17,19 +22,21 @@ describe '<syn-auth-login-form />', ->
   describe 'when users submits the form', ->
 
     beforeAll ->
-      elements.username.sendKeys( 'fake-user' )
-      elements.password.sendKeys( 'fake-password' )
-      elements.submit.click()
+      elements.demo1.username.sendKeys( 'fake-user' )
+      elements.demo1.password.sendKeys( 'fake-password' )
+      elements.demo1.submit.click()
       browser.wait( ->
-        elements.errors.getText().then (text) ->
+        elements.demo1.errors.getText().then (text) ->
           return text isnt ''
       , 3000)
 
-    it 'should show the remember me checkbox', ->
-      expect( elements.stayLoggedIn.isDisplayed() ).toEqual false
+    it 'should show the remember me checkbox unchecked', ->
+      expect( elements.demo1.rememberMe.isDisplayed() ).toEqual true
+      expect( elements.demo1.stayLoggedIn.getAttribute( 'checked' ) ).toEqual null
 
     it 'should display error message in the UI', ->
-      expect( elements.errors.getText() ).toEqual 'Service unavailable. Try again later.'
+      expect( elements.demo1.errors.getText() )
+        .toEqual 'Service unavailable. Try again later.'
 
     it 'should publish "error" event with the message', ->
       browser.manage().logs().get('browser').then ( browserLog ) ->
@@ -40,10 +47,16 @@ describe '<syn-auth-login-form />', ->
     describe 'when users clicks or focus on any field', ->
 
       beforeAll ->
-        elements.username.click()
+        elements.demo1.username.click()
         browser.wait(
-          protractor.until.elementIsNotVisible( elements.errors )
+          protractor.until.elementIsNotVisible( elements.demo1.errors )
         , 3000)
 
       it 'should hide errors message', ->
-        expect( elements.errors.isDisplayed() ).toEqual false
+        expect( elements.demo1.errors.isDisplayed() ).toEqual false
+
+  describe 'when stay-logged-in option was set to true', ->
+
+    it 'should show the remember me checkbox checked', ->
+      expect( elements.demo2.rememberMe.isDisplayed() ).toEqual false
+      expect( elements.demo2.stayLoggedIn.getAttribute( 'checked' ) ).toEqual 'true'
