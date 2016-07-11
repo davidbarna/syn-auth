@@ -68,4 +68,5 @@ class Session
     return getOrSet( this, '_stayLoggedIn', stayLoggedIn )
 
 
+
 module.exports = Session

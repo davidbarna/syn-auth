@@ -1,12 +1,10 @@
 describe '<syn-auth-login-form />', ->
 
   ERRORS_CLASS = 'syn-form_errors'
-  ERRORS_CLOSE_CLASS = 'syn-form_errors_close'
 
   inputs = element.all( By.tagName('input') )
   elements =
     errors: element.all( By.className( ERRORS_CLASS ) ).get(0)
-    errorsClose: element.all( By.className( ERRORS_CLOSE_CLASS ) ).get(0)
     username: inputs.get(1)
     password: inputs.get(2)
     submit: element.all( By.tagName('button') ).get(0)
@@ -39,10 +37,10 @@ describe '<syn-auth-login-form />', ->
         expect( log.message )
           .toContain( 'Error: Service unavailable. Try again later.' )
 
-    describe 'when users clicks on close errors button', ->
+    describe 'when users clicks or focus on any field', ->
 
       beforeAll ->
-        elements.errorsClose.click()
+        elements.username.click()
         browser.wait(
           protractor.until.elementIsNotVisible( elements.errors )
         , 3000)
