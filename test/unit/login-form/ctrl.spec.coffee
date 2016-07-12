@@ -32,6 +32,7 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
 
     beforeEach ->
       @sandbox.stub auth.i18n, 'translate'
+
       auth.i18n.translate.withArgs( 'USER' ).returns( 'user' )
       auth.i18n.translate.withArgs( 'PASSWORD' ).returns( 'password' )
       auth.i18n.translate.withArgs( 'ACCESS' ).returns( 'access' )
@@ -45,7 +46,27 @@ describe 'syn-auth.<syn-auth-login-form />.ctrl', ->
         USER: 'user'
         COPYRIGHT: 'COPYRIGHT'
         REMEMBER_ME: 'Remember me'
+        stayLoggedIn: undefined
+        showRememberMe: true
       )
+
+    describe 'when stayLoggedIn option is set to true', ->
+
+      beforeEach ->
+        @instance.init( { stayLoggedIn: true } )
+
+      it 'should hide \'Remember Me\' and set checkbox to true', ->
+        @instance.render.args[1][0].stayLoggedIn.should.equal true
+        @instance.render.args[1][0].showRememberMe.should.equal false
+
+    describe 'when stayLoggedIn option is set to false', ->
+
+      beforeEach ->
+        @instance.init( { stayLoggedIn: false } )
+
+      it 'should hide \'Remember Me\' and set checkbox to false', ->
+        @instance.render.args[1][0].stayLoggedIn.should.equal false
+        @instance.render.args[1][0].showRememberMe.should.equal false
 
   describe '#setChannel', ->
 
