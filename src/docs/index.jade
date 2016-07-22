@@ -16,6 +16,7 @@ html
         width: 100%;
         height: 100%;
         margin-top: 20px;
+        margin-bottom: 60px;
       }
       
       .demo-header input {
@@ -26,13 +27,19 @@ html
   body
     .demo-header 
       h1 Syn auth
-      h2 #{"<syn-auth-login-form @url @channel />"}
+      h2 #{"<syn-auth-login-form @url @channel @stay-logged-in />"}
       div @url:
         input( ng-model="loginUrl")
       div @channel:
         span "login-demo-channel"
     .demo-login-screen
       syn-auth-login-form( url="loginUrl", channel="login-demo-channel" )
+        include ../imgs/logos/logo-example.svg
+    br
+    h2 stay-logged-in="true"
+    p Remember me is hidden and forced to true
+    .demo-login-screen
+      syn-auth-login-form( url="loginUrl", channel="login-demo-channel" stay-logged-in="true" )
         include ../imgs/logos/logo-example.svg
     script(type='text/javascript', src='/index.bundle.js')
     script(type='text/javascript').

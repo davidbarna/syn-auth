@@ -71,7 +71,7 @@ class LoginFormCtrl
   ###
    * @return {this}
   ###
-  init: ->
+  init: ( options = {} ) ->
     @_auth = new synAuth.resource.Auth()
 
     @render(
@@ -80,6 +80,8 @@ class LoginFormCtrl
       ACCESS: i18n.translate( 'ACCESS' )
       COPYRIGHT: i18n.translate( 'COPYRIGHT' )
       REMEMBER_ME: i18n.translate( 'REMEMBER_ME' )
+      stayLoggedIn: options.stayLoggedIn
+      showRememberMe: !options.stayLoggedIn?
     )
 
     return this

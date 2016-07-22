@@ -6,6 +6,7 @@ LoginFormDirective =
   scope:
     url: '='
     channel: '@'
+    stayLoggedIn: '='
   transclude: true
   template: require( './tpl' )
   controller: [ '$scope', '$element', '$transclude', ( scope, element, trans ) ->
@@ -19,7 +20,7 @@ LoginFormDirective =
     angularify( scope, ctrl )
     scope.$watch( 'url' , ( value ) -> ctrl.setUrl( value) )
 
-    ctrl.init()
+    ctrl.init( { stayLoggedIn: scope.stayLoggedIn } )
       .setUrl( scope.url )
       .setChannel( scope.channel )
   ]
