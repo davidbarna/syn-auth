@@ -28,6 +28,7 @@
   "homepage": "https://github.com/soyundev/syn-auth",
   "devDependencies": {
     "jqlite": "0.2.34",
+    "stringify": "5.1.0",
     "syn-dev-tools": "~0"
   },
   "dependencies": {
