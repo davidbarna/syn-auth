@@ -1,4 +1,4 @@
-angular = require( 'angular-bsfy' )
+angular = require( 'angular' )
 
 window.syn ?= {}
 window.syn.core ?= require( 'syn-core' )
