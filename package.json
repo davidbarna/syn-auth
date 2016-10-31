@@ -1,6 +1,6 @@
 {
   "name": "syn-auth",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Login module",
   "main": "dist/index.js",
   "files": [
