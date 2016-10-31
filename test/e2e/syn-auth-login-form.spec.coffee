@@ -48,9 +48,6 @@ describe '<syn-auth-login-form />', ->
 
       beforeAll ->
         elements.demo1.username.click()
-        browser.wait(
-          protractor.until.elementIsNotVisible( elements.demo1.errors )
-        , 3000)
 
       it 'should hide errors message', ->
         expect( elements.demo1.errors.isDisplayed() ).toEqual false
