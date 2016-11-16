@@ -72,5 +72,11 @@ syn-auth-login-form {
     color: $c-brand-fg;
     text-align: center;
     padding-top: $spacing;
+
+    span {
+      display: inline-block;
+      margin-right: 15px;
+    }
+
   }
 }
