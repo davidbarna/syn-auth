@@ -1,6 +1,6 @@
 {
   "name": "syn-auth",
-  "version": "0.0.14",
+  "version": "0.0.16",
   "description": "Login module",
   "main": "dist/index.js",
   "files": [
@@ -27,13 +27,15 @@
   },
   "homepage": "https://github.com/soyundev/syn-auth",
   "devDependencies": {
+    "gulp": "3.9.1",
     "jqlite": "0.2.34",
     "stringify": "5.1.0",
     "syn-dev-tools": "~0"
   },
   "dependencies": {
-    "angular-bsfy": "1.4.8",
+    "angular": "1.5.8",
     "bluebird": "3.3.3",
+    "jade": "1.11.0",
     "syn-core": "~1"
   }
 }
