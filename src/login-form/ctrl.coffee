@@ -64,6 +64,9 @@ class LoginFormCtrl
 
     @_form.on( 'submit', @_submitHandler )
 
+    @_lab = @_elem.find( 'form' ).find('label')[0]
+    @_lab.addEventListener( 'click', @_recoverPasswordHandler )
+
     @_inputs = @_elem.find( 'input' )
     for input in @_inputs
       input.addEventListener( 'focus', @_closeHandler )
@@ -82,6 +85,7 @@ class LoginFormCtrl
       REMEMBER_ME: i18n.translate( 'REMEMBER_ME' )
       stayLoggedIn: options.stayLoggedIn
       showRememberMe: !options.stayLoggedIn?
+      recoverPassword: @recoverPassword
     )
 
     return this
@@ -178,6 +182,13 @@ class LoginFormCtrl
       input.removeEventListener( 'focus', @_handleEventInput )
     return
 
+  ###
+   * Call to recover-password component
+   * @return {undefined}
+  ###
+  _recoverPasswordHandler: ->
+    console.log("RECOVE RPASSWORD")
+    return
 
 
 module.exports = LoginFormCtrl
