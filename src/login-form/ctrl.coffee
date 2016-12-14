@@ -76,6 +76,9 @@ class LoginFormCtrl
   ###
   init: ( options = {} ) ->
     @_auth = new synAuth.resource.Auth()
+#    @recoverPasswordUrl = options.recoverPassword
+#    console.log(options)
+#    console.log(@recoverPasswordUrl)
 
     @render(
       USER: i18n.translate( 'USER' )
@@ -83,11 +86,13 @@ class LoginFormCtrl
       ACCESS: i18n.translate( 'ACCESS' )
       COPYRIGHT: i18n.translate( 'COPYRIGHT' )
       REMEMBER_ME: i18n.translate( 'REMEMBER_ME' )
+      RECOVER_PASSWORD: i18n.translate( 'RECOVER_PASSWORD' )
       stayLoggedIn: options.stayLoggedIn
       showRememberMe: !options.stayLoggedIn?
-      recoverPassword: @recoverPassword
+      showRecoverPassword: true
+#      showRecoverPassword: !options.recoverPassword?
     )
-
+#    console.log(showRecoverPassword)
     return this
 
   ###
@@ -106,7 +111,7 @@ class LoginFormCtrl
   ###
   setChannel: ( channelName ) ->
     @_pubsub?.destroy?()
-    @_pubsub = synCore.pubsub.channel.factory.create( channelName, ['success', 'error', 'click'] )
+    @_pubsub = synCore.pubsub.channel.factory.create( channelName, ['success', 'error'] )
     return this
 
   ###
@@ -187,8 +192,7 @@ class LoginFormCtrl
    * @return {undefined}
   ###
   _recoverPasswordHandler: ->
-    console.log("RECOVER PASSWORD")
-    @_pubsub?.click.publish()
+    window.open('#/recoverPassword','_blank');
     return
 
 

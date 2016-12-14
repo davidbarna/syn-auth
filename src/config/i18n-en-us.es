@@ -6,6 +6,7 @@ export var translations = {
   'ACCESS': 'access',
   'COPYRIGHT': '',
   'REMEMBER_ME': 'Remember me',
+  'RECOVER_PASSWORD': 'Did you forget your password?',
 
   // Login messages.
   'SERVICE_UNAVAILABLE': 'Service unavailable. Try again later.',
