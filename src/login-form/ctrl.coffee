@@ -106,7 +106,7 @@ class LoginFormCtrl
   ###
   setChannel: ( channelName ) ->
     @_pubsub?.destroy?()
-    @_pubsub = synCore.pubsub.channel.factory.create( channelName, ['success', 'error'] )
+    @_pubsub = synCore.pubsub.channel.factory.create( channelName, ['success', 'error', 'click'] )
     return this
 
   ###
@@ -187,7 +187,8 @@ class LoginFormCtrl
    * @return {undefined}
   ###
   _recoverPasswordHandler: ->
-    console.log("RECOVE RPASSWORD")
+    console.log("RECOVER PASSWORD")
+    @_pubsub?.click.publish()
     return
 
 
