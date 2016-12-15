@@ -65,20 +65,20 @@ class LoginFormCtrl
     @_form.on( 'submit', @_submitHandler )
 
     @_lab = @_elem.find( 'form' ).find('label')[0]
-    @_lab.addEventListener( 'click', @_recoverPasswordHandler )
+    @_lab.addEventListener( 'click', @_recoverPasswordHandler.bind(@) )
 
     @_inputs = @_elem.find( 'input' )
     for input in @_inputs
       input.addEventListener( 'focus', @_closeHandler )
+
+    @_recoverPasswordUrl
 
   ###
    * @return {this}
   ###
   init: ( options = {} ) ->
     @_auth = new synAuth.resource.Auth()
-#    @recoverPasswordUrl = options.recoverPassword
-#    console.log(options)
-#    console.log(@recoverPasswordUrl)
+    @_recoverPasswordUrl = options.recoverPassword?.url
 
     @render(
       USER: i18n.translate( 'USER' )
@@ -89,10 +89,8 @@ class LoginFormCtrl
       RECOVER_PASSWORD: i18n.translate( 'RECOVER_PASSWORD' )
       stayLoggedIn: options.stayLoggedIn
       showRememberMe: !options.stayLoggedIn?
-      showRecoverPassword: true
-#      showRecoverPassword: !options.recoverPassword?
+      showRecoverPassword: !!options.recoverPassword?
     )
-#    console.log(showRecoverPassword)
     return this
 
   ###
@@ -192,7 +190,7 @@ class LoginFormCtrl
    * @return {undefined}
   ###
   _recoverPasswordHandler: ->
-    window.open('#/recoverPassword','_blank');
+    window.open(@_recoverPasswordUrl,'_blank');
     return
 
 
