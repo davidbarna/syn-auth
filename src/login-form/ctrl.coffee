@@ -64,7 +64,7 @@ class LoginFormCtrl
 
     @_form.on( 'submit', @_submitHandler )
 
-    @_lab = @_elem.find( 'form' ).find('label')[0]
+    @_lab = @_elem.find( 'form' ).find('p')[0]
     @_lab.addEventListener( 'click', @_recoverPasswordHandler.bind(@) )
 
     @_inputs = @_elem.find( 'input' )
