@@ -6,6 +6,7 @@ export var translations = {
   'ACCESS': 'acceder',
   'COPYRIGHT': '',
   'REMEMBER_ME': 'Recordar cuenta',
+  'AUTO-ENROLLMENT': 'Auto-enrollment',
 
   // Login messages.
   'SERVICE_UNAVAILABLE': 'Servicio no disponible. Inténtelo más tarde.',

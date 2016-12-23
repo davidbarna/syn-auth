@@ -64,15 +64,21 @@ class LoginFormCtrl
 
     @_form.on( 'submit', @_submitHandler )
 
+    @_lab = @_elem.find( 'form' ).find('p')[0]
+    @_lab.addEventListener( 'click', @_autoEnrollmentHandler.bind(@) )
+
     @_inputs = @_elem.find( 'input' )
     for input in @_inputs
       input.addEventListener( 'focus', @_closeHandler )
+
+    @_autoEnrollmentUrl
 
   ###
    * @return {this}
   ###
   init: ( options = {} ) ->
     @_auth = new synAuth.resource.Auth()
+    @_autoEnrollmentUrl = options.autoEnrollment?.url
 
     @render(
       USER: i18n.translate( 'USER' )
@@ -82,6 +88,7 @@ class LoginFormCtrl
       REMEMBER_ME: i18n.translate( 'REMEMBER_ME' )
       stayLoggedIn: options.stayLoggedIn
       showRememberMe: !options.stayLoggedIn?
+      showRecoverPassword: !!options.autoEnrollment?
     )
 
     return this
@@ -165,6 +172,14 @@ class LoginFormCtrl
   showUserCard: ( user ) ->
     @_elem.addClass( @SUCCESS_CLASS )
     @render( user: user )
+    return
+
+  ###
+   * Call to auto-enrollment component
+   * @return {undefined}
+  ###
+  _autoEnrollmentHandler: ->
+    window.open(@_autoEnrollmentUrl,'_blank');
     return
 
   ###
