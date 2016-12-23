@@ -86,9 +86,10 @@ class LoginFormCtrl
       ACCESS: i18n.translate( 'ACCESS' )
       COPYRIGHT: i18n.translate( 'COPYRIGHT' )
       REMEMBER_ME: i18n.translate( 'REMEMBER_ME' )
+      AUTO_ENROLLMENT: i18n.translate( 'AUTO_ENROLLMENT' )
       stayLoggedIn: options.stayLoggedIn
       showRememberMe: !options.stayLoggedIn?
-      showRecoverPassword: !!options.autoEnrollment?
+      showAutoEnrollment: !!options.autoEnrollment?
     )
 
     return this
