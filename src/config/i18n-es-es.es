@@ -6,7 +6,7 @@ export var translations = {
   'ACCESS': 'acceder',
   'COPYRIGHT': '',
   'REMEMBER_ME': 'Recordar cuenta',
-  'RECOVER_PASSWORD': '¿Olvidaste tu contraseña?',
+  'RECOVER_PASSWORD': '¿Has olvidado tu contraseña?',
 
   // Login messages.
   'SERVICE_UNAVAILABLE': 'Servicio no disponible. Inténtelo más tarde.',
